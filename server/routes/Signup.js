@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const {registerValidation} = require('../validation/validation')
 
 
-router.post('/' , async (req,res) =>{
+router.post('/register' , async (req,res) =>{
     
     const {error} =await registerValidation(req.body);
     if (error) return res.send(error.details[0].message)
