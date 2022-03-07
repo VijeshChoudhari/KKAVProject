@@ -1,11 +1,13 @@
 import{React,useState} from 'react'
-import {NavLink} from 'react-router-dom'
+import {Outlet,NavLink} from 'react-router-dom'
 import axios from "axios";
 function Register() {
- 
+
   return (
     <>
-      <h1>Sign Up Form</h1>
+    <div>
+    <h1>Create a new account.</h1>
+    <p>Find. Explore. Share.</p>
       <form action="">
         <input type="email" placeholder='Enter your Email' name="email" id="" />
         <br/>
@@ -13,10 +15,16 @@ function Register() {
         <input type="password" placeholder='Password'  name="password" id=""  />
         <br/>
         <br/>
-        <input type="submit" name="Login"   id="" />
+        <NavLink to="/addProfile"><input type="submit" name="Login"   id="" ></input></NavLink>
       </form>
       <br/>
+     
       <NavLink to="/login">Login</NavLink> 
+      
+    </div>
+    <Outlet/>
+
+    
       
     </>
   )
