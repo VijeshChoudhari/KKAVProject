@@ -5,13 +5,8 @@ const bcrypt = require('bcryptjs')
 const {registerValidation} = require('../validation/validation')
 
 
-<<<<<<< HEAD
 router.post('/' , async (req,res) =>{
     //Validation for registration
-=======
-router.post('/register' , async (req,res) =>{
-    
->>>>>>> a6c5e8acd254de5aaa26e7a6c50d4037c31f131b
     const {error} =await registerValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message)
     
@@ -25,7 +20,7 @@ router.post('/register' , async (req,res) =>{
 
     const signup = new Signup({
         email : req.body.email,
-        password : req.body.password
+        password : hashedpassword
     })
     //Saving Users in database
     try{

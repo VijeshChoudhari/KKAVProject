@@ -37,19 +37,27 @@ Router.post('/Login' , async(req,res)=>{
 
 Router.get('/' , async(req,res) =>{
     //Taking jwt token from cookie
-    const cookie = req.headers?.cookie.slice(4)
-    const claims = jwt.verify(cookie , "secret")
+    const cookie = req.headers?.cookie
 
-    if(!claims){
-        return res.status(401).send({
-            message : "Unauthenticated"
-        })
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , "secret")
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        }
+        
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        res.send(data)    
     }
-
-    //searching user from token
-    const user = await Signup.findOne({_id : claims._id})
-    const {password , ...data} = user.toJSON()
-    res.send(data)    
+    else {
+        res.send({ message : "You're Not Logged in"})
+    }
 })
 
 //Logout on post request
