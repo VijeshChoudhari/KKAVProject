@@ -6,21 +6,23 @@ const {registerValidation} = require('../validation/validation')
 
 
 router.post('/' , async (req,res) =>{
-    
+    //Validation for registration
     const {error} =await registerValidation(req.body);
-    if (error) return res.send(error.details[0].message)
+    if (error) return res.status(400).send(error.details[0].message)
     
+    //checking if email already exist
+    const checkEmail = await Signup.findOne({email : req.body.email})
+    if(checkEmail) return res.status(400).send('Email already exist')
+
+    //Hashing password
     const salt = await bcrypt.genSalt(10)
     const hashedpassword = await bcrypt.hash(req.body.password, salt)
-    
-    const email = req.body.email;
-    const password = hashedpassword;
 
     const signup = new Signup({
-        email : email,
-        password : password
+        email : req.body.email,
+        password : req.body.password
     })
-
+    //Saving Users in database
     try{
         const savedUser = await signup.save();
         const {password , ...data} = savedUser.toJSON()
