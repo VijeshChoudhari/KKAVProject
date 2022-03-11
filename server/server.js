@@ -15,9 +15,11 @@ app.get('/', (req,res)=>{
 //Routing
 const Signup = require('./routes/Signup')
 const User = require('./routes/User')
+const Project = require('./routes/Project')
 
 app.use('/Signup' , Signup )
 app.use('/User' , User )
+app.use('/Projects' , Project )
 
 //Library used
 app.use(cors({

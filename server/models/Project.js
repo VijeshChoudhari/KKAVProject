@@ -11,13 +11,16 @@ const AddProjectSchema = mongoose.Schema({
     Github_Link : {
         type : String,
         min : 8,
+        required : true
     },
     About_Project : {
         type : String, 
         required: true
+        
     },
     Date_Of_Created : {
         type : Date,
+        required : true,
         default : Date.now,
     }
 });

@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const ProfileSchema = mongoose.Schema({
-    name : {
+    Email : {
+        type : String,
+        required : true
+    },
+    Name : {
         type : String,
         required : true
     },
@@ -11,17 +15,19 @@ const ProfileSchema = mongoose.Schema({
     },
     Role : {
         type : String,
-        required : true
+        default : 'Not defined'
     },
-    Working_place : {
+    Working_Place : {
+        type : String,
+        default : 'Not defined'
+    },
+    Github_Profile : {
         type : String,
         required : true
     },
-    Github_profile : {
+    LinkedIn_Profile : {
         type : String,
-    },
-    Linkedln_profile : {
-        type : String
+        required : true
     }
 })
 
