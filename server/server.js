@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json())
 
 //Default Home Page
-app.get('/', (req,res)=>{
+app.get('/home', (req,res)=>{
     res.send('Welcome')
 })
 
@@ -17,9 +17,9 @@ const Signup = require('./routes/Signup')
 const User = require('./routes/User')
 const Project = require('./routes/Project')
 
-app.use('/Signup' , Signup )
-app.use('/User' , User )
-app.use('/Projects' , Project )
+app.use('/signup' , Signup )
+app.use('/user' , User )
+app.use('/projects' , Project )
 
 //Library used
 app.use(cors({
@@ -29,9 +29,11 @@ app.use(cors({
 app.use(cookieParser())
 
 //Database Connection
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true } , ()=>{
-    console.log('connected to db')
-})
+
+    mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true } , ()=>{
+        console.log('connected to db')
+    })
+
 
 //Listening server on port 5000
-app.listen(5000);
+app.listen(5000); 

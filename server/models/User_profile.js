@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
 
 const ProfileSchema = mongoose.Schema({
-    Email : {
+    email : {
         type : String,
         required : true
     },
-    Name : {
+    name : {
         type : String,
         required : true
     },
-    Profile : {
+    profile : {
         type : String,
         required : true
     },
-    Role : {
+    role : {
         type : String,
         default : 'Not defined'
     },
-    Working_Place : {
+    place : {
         type : String,
         default : 'Not defined'
     },
-    Github_Profile : {
+    social1Link : {
         type : String,
         required : true
     },
-    LinkedIn_Profile : {
+    social2Link : {
         type : String,
         required : true
     }

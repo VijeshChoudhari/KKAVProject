@@ -1,5 +1,5 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.css'
+
 import {NavLink} from 'react-router-dom'
 export const Navbar = () => {
   return (
@@ -10,7 +10,8 @@ export const Navbar = () => {
    <NavLink to="/">Home</NavLink> | {" "}
    <NavLink to="/contact">Contact</NavLink> |  {" "}
    <NavLink to="/login">Login</NavLink> | {" "}
-    <NavLink to="/register">Register</NavLink>
+    <NavLink to="/register">Register</NavLink>| {" "}
+    <NavLink to="/logout">Logout</NavLink>
    </nav>
     </>
   )

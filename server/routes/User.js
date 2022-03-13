@@ -8,7 +8,7 @@ const {ProfileValidation} = require('../validation/validation')
 const bcrypt = require('bcryptjs')
 require('dotenv/config')
 
-Router.post('/Login' , async(req,res)=>{
+Router.post('/login' , async(req,res)=>{
 
     //Validation for Login
     const {error} = LoginValidation(req.body)
@@ -31,6 +31,7 @@ Router.post('/Login' , async(req,res)=>{
             httpOnly : true,
             maxAge : 4*60*60*1000 // 4hr 
         })
+        console.log(token)
         res.send({ message : "Login Success"}) 
     }
 })
@@ -45,9 +46,7 @@ Router.get('/' , async(req,res) =>{
         const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
         
         if(!claims){
-            return res.status(401).send({
-                message : "Unauthenticated"
-            })
+            return res.status(401).send('Unauthorized')
         }
         
         //searching user from token
@@ -56,11 +55,11 @@ Router.get('/' , async(req,res) =>{
         res.send(data)    
     }
     else {
-        res.send({ message : "You're Not Logged in"})
+        res.send("Not logged In")
     }
 })
 
-Router.post('/ProfileSetup', async(req,res)=>{
+Router.post('/addProfile', async(req,res)=>{
 
     //checking if sending user is valid or not
     const cookie = req.headers?.cookie
@@ -83,13 +82,13 @@ Router.post('/ProfileSetup', async(req,res)=>{
         if (error) return res.status(400).send(error.details[0].message)
 
         const userprofile = new UserProfile({
-            Email : data.email,
-            Name : req.body.name,
-            Profile : req.body.profile,
-            Role : req.body.role,
-            Working_Place : req.body.working_place,
-            Github_Profile : req.body.github_profile,
-            LinkedIn_Profile : req.body.linkedin_profile
+            email : data.email,
+            name : req.body.name,
+            profile : req.body.profile,
+            role : req.body.role,
+            place : req.body.place,
+            social1Link : req.body.social1Link,
+            social2Link : req.body.social2Link
         })
 
         try{
@@ -107,9 +106,10 @@ Router.post('/ProfileSetup', async(req,res)=>{
 })
 
 //Logout on post request
-Router.post('/Logout' , (req,res)=>{
+Router.post('/logout' , (req,res)=>{
     res.cookie('jwt' , '' , {maxAge : 0})
     res.send({message : "Logout success"})
+    console.log("Logged Out")
 })
 
 module.exports = Router

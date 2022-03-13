@@ -1,28 +1,40 @@
 
 import { BrowserRouter, Routes,Route} from 'react-router-dom';
 import './App.css';
-
+import { createContext,useReducer } from 'react';
 import { Navbar } from './components/NavBarFooter/Navbar';
 import WelcomePage from './components/Welcome/WelcomePage';
 import Login from './components/login/Login';
 import Register from './components/register/Register'
 import { Contact } from './components/ContactPage/Contact';
 import { AddProfile } from './components/register/AddProfile';
+import Homepage from './components/homepage/Homepage';
+import Profiles from './components/Profile/Profiles'
+import { initialState,reducer } from './reducer/UseReducer';
+  //1: ContextAPI
+  export const UserContext=createContext();
 function App() {
+  const [state, dispatch] = useReducer(reducer,initialState)
   return (
   <>
+  <UserContext.Provider value={{state,dispatch}}>
   <BrowserRouter>
   <Navbar/>
   <Routes>
-    <Route path='/' element={<WelcomePage/>}/>
+    <Route path='/home' element={<WelcomePage/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/contact' element={<Contact/>}/>
     <Route path='/register' element={<Register/>}/>
-      <Route path='/addProfile' element={<AddProfile/>}/>
-  
-      <Route path="*" element={<p>Nothing is there!</p>}/>
+    <Route path='/addProfile' element={<AddProfile/>}/>
+    <Route path="*" element={<p>Nothing is there!</p>}/>
+    <Route path="/" element={<Homepage/>}>
+      
+    </Route>
+    <Route path="/Profile" element={<Profiles/>}/>
+    
   </Routes>
   </BrowserRouter>
+  </UserContext.Provider>
     
   </>
   );
