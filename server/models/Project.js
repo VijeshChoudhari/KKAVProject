@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const AddProjectSchema = mongoose.Schema({
+    Email : {
+        type : String,
+        required : true
+    },  
+
     Project_Name : {
         type : String,
         required : true,

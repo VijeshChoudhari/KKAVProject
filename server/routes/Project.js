@@ -26,19 +26,19 @@ router.post('/add', async(req,res)=>{
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
        
-
+        //Validating data of Project
         const {error} = ProjectValidation(req.body)
         if(error) return res.status(402).send(error)
+        
 
-        const email = data.email
         const userproject = new UserProject({
-            Email : email,
+            Email : data.email,
             Project_Name : req.body.project_name,
             Tech_Stack : req.body.tech_stack,
             Github_Link : req.body.github_link,
             About_Project : req.body.about_project
         })
-
+        //Saving Project to database
         try{
             const savedData = await userproject.save()
             res.send(savedData)
@@ -52,5 +52,25 @@ router.post('/add', async(req,res)=>{
     }
 
 })
+
+//Router for retrieving all Project data of all users
+router.get('/all', async(req,res)=>{
+    UserProject.find((err,data)=>{
+        if(!err){
+            res.json(data)
+        }
+        else{
+            res.status(400).send({message : "Data not found"})
+        }
+    })
+})
+
+router.post('/email', async(req,res)=>{
+
+    UserProject.find({Email : req.body.email}, (err,data)=>{
+        if(!err) res.json(data)
+        else res.status(400).send({message : "Not found"})
+    });
+})  
 
 module.exports = router

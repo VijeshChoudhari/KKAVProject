@@ -11,6 +11,11 @@ const UserSchema = mongoose.Schema({
         required : true,
         min : 8,
         max : 20
+    },
+    profile_setup : {
+        type : Boolean,
+        required : true,
+        default : false
     }
 });
 
