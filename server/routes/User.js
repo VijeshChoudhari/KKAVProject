@@ -52,7 +52,8 @@ Router.get('/' , async(req,res) =>{
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
-        res.send(data)    
+        res.send(data) 
+          
     }
     else {
         res.send("Not logged In")
@@ -107,7 +108,7 @@ Router.post('/addProfile', async(req,res)=>{
 
 //Logout on post request
 Router.post('/logout' , (req,res)=>{
-    res.cookie('jwt' , '' , {maxAge : 0})
+   res.clearCookie('jwt',{path:'/home'})
     res.status(200).send({message : "Logout success"})
     console.log("Logged Out")
 })

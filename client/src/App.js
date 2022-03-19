@@ -16,12 +16,14 @@ import Logout from './components/login/Logout';
   export const UserContext=createContext();
 function App() {
   const [state, dispatch] = useReducer(reducer,initialState)
+
   return (
   <>
   <UserContext.Provider value={{state,dispatch}}>
     <BrowserRouter>
       <Navbar/>
       <Routes>
+     
         <Route path='/home' element={<WelcomePage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/contact' element={<Contact/>}/>

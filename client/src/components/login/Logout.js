@@ -26,6 +26,7 @@ function Logout() {
         throw error;
       }else{
         dispatch({type:"USER",payload:false})
+        
         console.log("Logout Successful")
         navigate('/login');
       }

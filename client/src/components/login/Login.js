@@ -28,6 +28,7 @@ function Login() {
       console.log("Invalid USER")
     }else{
       dispatch({type:"USER",payload:true})
+      
     
       console.log("Login Successful")
       navigate("/")
