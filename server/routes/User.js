@@ -76,6 +76,9 @@ Router.post('/addProfile', async(req,res)=>{
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
+
+        
+        if(data.profile_setup===true) return res.status(400).send({message : "Profile already added"})
         
         //Validation for User Profile
         const {error} = ProfileValidation(req.body)

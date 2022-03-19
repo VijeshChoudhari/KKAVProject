@@ -26,16 +26,16 @@ const ProfileValidation = (data) =>{
         Profile : Joi.string().required(),
         Role : Joi.string(),
         Working_Place : Joi.string(),
-        Github_Profile : Joi.string().required().min(8),
-        LinkedIn_Profile : Joi.string().required().min(6)
+        social1Link : Joi.string().required().min(8),
+        social2Link : Joi.string().required().min(6)
     });
     return schema.validate({
         Name : data.name,
         Profile : data.profile,
         Role : data.role,
         Working_Place : data.working_place,
-        Github_Profile : data.github_profile,
-        LinkedIn_Profile : data.linkedin_profile
+        social1Link : data.social1Link,
+        social2Link : data.social2Link
     }) 
 }
 
