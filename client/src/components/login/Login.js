@@ -24,11 +24,11 @@ function Login() {
     })
     const data= res.json()
     if(res.status===400 || !data){
-      window.alert("Invalid USER")
+
       console.log("Invalid USER")
     }else{
       dispatch({type:"USER",payload:true})
-      window.alert("Login Successful")
+    
       console.log("Login Successful")
       navigate("/")
     }

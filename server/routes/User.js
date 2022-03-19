@@ -108,7 +108,7 @@ Router.post('/addProfile', async(req,res)=>{
 //Logout on post request
 Router.post('/logout' , (req,res)=>{
     res.cookie('jwt' , '' , {maxAge : 0})
-    res.send({message : "Logout success"})
+    res.status(200).send({message : "Logout success"})
     console.log("Logged Out")
 })
 

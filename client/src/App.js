@@ -11,6 +11,7 @@ import { AddProfile } from './components/register/AddProfile';
 import Homepage from './components/homepage/Homepage';
 import Profiles from './components/Profile/Profiles'
 import { initialState,reducer } from './reducer/UseReducer';
+import Logout from './components/login/Logout';
   //1: ContextAPI
   export const UserContext=createContext();
 function App() {
@@ -18,22 +19,20 @@ function App() {
   return (
   <>
   <UserContext.Provider value={{state,dispatch}}>
-  <BrowserRouter>
-  <Navbar/>
-  <Routes>
-    <Route path='/home' element={<WelcomePage/>}/>
-    <Route path='/login' element={<Login/>}/>
-    <Route path='/contact' element={<Contact/>}/>
-    <Route path='/register' element={<Register/>}/>
-    <Route path='/addProfile' element={<AddProfile/>}/>
-    <Route path="*" element={<p>Nothing is there!</p>}/>
-    <Route path="/" element={<Homepage/>}>
-      
-    </Route>
-    <Route path="/Profile" element={<Profiles/>}/>
-    
-  </Routes>
-  </BrowserRouter>
+    <BrowserRouter>
+      <Navbar/>
+      <Routes>
+        <Route path='/home' element={<WelcomePage/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/addProfile' element={<AddProfile/>}/>
+        <Route path="*" element={<p>Nothing is there!</p>}/>
+        <Route path="/" element={<Homepage/>}> </Route>
+        <Route path="/Profile" element={<Profiles/>}/>
+        <Route path='/logout' element={<Logout/>}/>
+      </Routes>
+    </BrowserRouter>
   </UserContext.Provider>
     
   </>
