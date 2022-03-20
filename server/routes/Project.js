@@ -52,7 +52,33 @@ router.post('/add', async(req,res)=>{
     }
 
 })
+//Route to retrive user project
+router.get('/userProject',async(req,res)=>{
+    const cookie = req.headers?.cookie
+    if(cookie){
 
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        }
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        const Projects=await UserProject.find()
+        const userProject= Projects.filter(item=>item.Email===data.email)
+       
+        
+        res.status(200).send(userProject)
+
+    }
+    else{
+        res.status(402).send({message : "You're not logged in"})
+    }
+})
 //Router for retrieving all Project data of all users
 router.get('/all', async(req,res)=>{
     UserProject.find((err,data)=>{

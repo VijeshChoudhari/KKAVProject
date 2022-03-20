@@ -59,6 +59,32 @@ Router.get('/' , async(req,res) =>{
         res.send("Not logged In")
     }
 })
+Router.get('/profileData',async(req,res)=>{
+    const cookie = req.headers?.cookie
+
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send('Unauthorized')
+        }
+        
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        const getUserStatus=await UserProfile.findOne({email : data.email })
+        const {_id,...profileData}=getUserStatus.toJSON()
+        res.send(profileData)
+          
+    }
+    else {
+        res.send("Not logged In")
+    }
+        
+
+})
 Router.get('/profile',async(req,res)=>{
     const cookie = req.headers?.cookie
     if(cookie){
@@ -76,8 +102,7 @@ Router.get('/profile',async(req,res)=>{
         const {password , ...data} = user.toJSON()
         const getUserStatus=await UserProfile.findOne({email : data.email })
         if(getUserStatus){
-            const {...resData}=getUserStatus.toJSON()
-            console.log(resData)
+           
             return res.status(200).send({message:"Profile added"})
         }else{
             return res.status(400).send({message:"Profile not added"})
