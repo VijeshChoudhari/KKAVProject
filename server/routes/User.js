@@ -59,7 +59,35 @@ Router.get('/' , async(req,res) =>{
         res.send("Not logged In")
     }
 })
+Router.get('/profile',async(req,res)=>{
+    const cookie = req.headers?.cookie
+    if(cookie){
 
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        }
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        const getUserStatus=await UserProfile.findOne({email : data.email })
+        if(getUserStatus){
+            const {...resData}=getUserStatus.toJSON()
+            console.log(resData)
+            return res.status(200).send({message:"Profile added"})
+        }else{
+            return res.status(400).send({message:"Profile not added"})
+        }
+
+    }else{
+        res.send("Not logged In")
+    }
+    
+})
 Router.post('/addProfile', async(req,res)=>{
 
     //checking if sending user is valid or not
@@ -78,9 +106,9 @@ Router.post('/addProfile', async(req,res)=>{
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
 
-        
-        if(data.profile_setup===true) return res.status(400).send({message : "Profile already added"})
-        
+       
+       
+       
         //Validation for User Profile
         const {error} = ProfileValidation(req.body)
         if (error) return res.status(400).send(error.details[0].message)
@@ -92,13 +120,17 @@ Router.post('/addProfile', async(req,res)=>{
             role : req.body.role,
             place : req.body.place,
             social1Link : req.body.social1Link,
-            social2Link : req.body.social2Link
+            social2Link : req.body.social2Link,
+            
         })
-
+        
         try{
             //Saving User Profile data into database
             const savedData = await userprofile.save();
+           
+            
             res.send(savedData)
+            
         }
         catch(err){
             res.status(401).send(err)
@@ -111,7 +143,7 @@ Router.post('/addProfile', async(req,res)=>{
 
 //Logout on post request
 Router.post('/logout' , (req,res)=>{
-   res.clearCookie('jwt',{path:'/home'})
+    res.cookie('jwt' , '' , {maxAge : 0})
     res.status(200).send({message : "Logout success"})
     console.log("Logged Out")
 })

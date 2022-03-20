@@ -9,6 +9,35 @@ function Login() {
   const navigate=useNavigate()
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
+  const checkDataEntry = async()=>{
+    
+    try{
+      const res1=await fetch('/user/profile',{
+        method:"GET",
+        headers:{
+          Accept:"application/json",
+          "Content-Type":"application/json"
+        },
+        credentials:"include"
+      
+      })
+     
+      if(res1.status===200){
+        console.log("Profile added already")
+        navigate('/')
+        
+        
+      }
+      else{
+        console.log("Profile not added already")
+        navigate('/addProfile')
+      }
+    }catch(err){
+      console.log(err)
+ 
+    }
+    
+  }
   
   const loginUser= async (e)=>{
     e.preventDefault();
@@ -28,10 +57,8 @@ function Login() {
       console.log("Invalid USER")
     }else{
       dispatch({type:"USER",payload:true})
-      
-    
       console.log("Login Successful")
-      navigate("/")
+      checkDataEntry()
     }
   
   }

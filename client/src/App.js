@@ -12,6 +12,7 @@ import Homepage from './components/homepage/Homepage';
 import Profiles from './components/Profile/Profiles'
 import { initialState,reducer } from './reducer/UseReducer';
 import Logout from './components/login/Logout';
+import Project from './components/ProjectPage/Project';
   //1: ContextAPI
   export const UserContext=createContext();
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/addProfile' element={<AddProfile/>}/>
         <Route path="*" element={<p>Nothing is there!</p>}/>
         <Route path="/" element={<Homepage/>}> </Route>
+        ,<Route path="/projects" element={<Project/>}></Route>
         <Route path="/Profile" element={<Profiles/>}/>
         <Route path='/logout' element={<Logout/>}/>
       </Routes>

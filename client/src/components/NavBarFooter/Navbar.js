@@ -34,10 +34,7 @@ export const Navbar = () => {
   return (
     <>
     <nav>
-    
-   
-   
-  <RenderMenu/>
+     <RenderMenu/>
    </nav>
     </>
   )

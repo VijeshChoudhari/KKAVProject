@@ -28,7 +28,8 @@ const ProfileSchema = mongoose.Schema({
     social2Link : {
         type : String,
         required : true
-    }
+    },
+    
 })
 
 module.exports = mongoose.model('UserProfile' , ProfileSchema)

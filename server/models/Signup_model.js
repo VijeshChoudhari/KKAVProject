@@ -12,11 +12,7 @@ const UserSchema = mongoose.Schema({
         min : 8,
         max : 20
     },
-    profile_setup : {
-        type : Boolean,
-        required : true,
-        default : false
-    }
+   
 });
 
 module.exports = mongoose.model('Signup', UserSchema);
