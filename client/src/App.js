@@ -13,6 +13,8 @@ import Profiles from './components/Profile/Profiles'
 import { initialState,reducer } from './reducer/UseReducer';
 import Logout from './components/login/Logout';
 import Project from './components/ProjectPage/Project';
+import UserProject from './components/Profile/UserProject';
+import AddUserProject from './components/Profile/AddUserProject';
   //1: ContextAPI
   export const UserContext=createContext();
 function App() {
@@ -34,6 +36,9 @@ function App() {
         <Route path="/" element={<Homepage/>}> </Route>
         ,<Route path="/projects" element={<Project/>}></Route>
         <Route path="/Profile" element={<Profiles/>}/>
+       <Route path="/UserProject" element={<UserProject/>}/>
+       <Route path="/AddProject" element={<AddUserProject/>}/>
+
         <Route path='/logout' element={<Logout/>}/>
       </Routes>
     </BrowserRouter>

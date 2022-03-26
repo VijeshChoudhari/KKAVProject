@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const UserProject = require('../models/Project') 
 const Signup = require('../models/Signup_model')
+const UserProfile = require('../models/User_profile')
 const jwt = require('jsonwebtoken')
 const {ProjectValidation} = require('../validation/validation')
 
@@ -41,7 +42,7 @@ router.post('/add', async(req,res)=>{
         //Saving Project to database
         try{
             const savedData = await userproject.save()
-            res.send(savedData)
+            res.status(200).send(savedData)
         }catch(err){
             res.send(err)
         }
@@ -68,11 +69,17 @@ router.get('/userProject',async(req,res)=>{
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
+
+        const getUserStatus=await UserProfile.findOne({email : data.email })
+        const {_id,...profileData}=getUserStatus.toJSON()
+
         const Projects=await UserProject.find()
         const userProject= Projects.filter(item=>item.Email===data.email)
-       
+        profileData["Projects"]=userProject
         
-        res.status(200).send(userProject)
+        
+        
+        res.status(200).send(profileData)
 
     }
     else{

@@ -1,5 +1,5 @@
 import{React,useState,useContext} from 'react'
-import {Outlet,NavLink,useNavigate} from 'react-router-dom'
+import {NavLink,useNavigate} from 'react-router-dom'
 
 
 function Register() {
@@ -62,7 +62,7 @@ const data=await res.json()
       <NavLink to="/login">Login</NavLink> 
       
     </div>
-    <Outlet/>
+   
 
     
       
