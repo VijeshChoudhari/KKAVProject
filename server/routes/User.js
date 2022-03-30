@@ -40,9 +40,9 @@ Router.post('/login' , async(req,res)=>{
 Router.get('/' , async(req,res) =>{
     //Taking jwt token from cookie
     const cookie = req.headers?.cookie
-
+    
     if(cookie){
-
+        
         const cookieValue = cookie.slice(4)
         const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
         
@@ -54,15 +54,22 @@ Router.get('/' , async(req,res) =>{
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
         res.send(data) 
-          
+        
     }
     else {
         res.send("Not logged In")
     }
 })
+//Logout on post request
+Router.post('/logout' , (req,res)=>{
+    res.cookie('jwt' , '' , {maxAge : 0})
+    res.status(200).send({message : "Logout success"})
+    
+})
+
 Router.get('/profileData',async(req,res)=>{
     const cookie = req.headers?.cookie
-
+    
     if(cookie){
 
         const cookieValue = cookie.slice(4)
@@ -166,12 +173,6 @@ Router.post('/addProfile', async(req,res)=>{
     }
 })
 
-//Logout on post request
-Router.post('/logout' , (req,res)=>{
-    res.cookie('jwt' , '' , {maxAge : 0})
-    res.status(200).send({message : "Logout success"})
-    console.log("Logged Out")
-})
 
 Router.get('/bookmark', async(req,res)=>{
     
@@ -185,14 +186,13 @@ Router.get('/bookmark', async(req,res)=>{
             return res.status(401).send('Unauthorized')
         }
 
-        res.send(claims._id)
-        
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
-        const getbookmark=await bookmark.findOne({email : data.email })
+        const getbookmark=await bookmark.findOne({Email : data.email })
+        if(!getbookmark) return res.status(402).send({message : "Bookmarks list are empty"})
         const {_id,...bookmarkData}=getbookmark.toJSON()
-        // res.send(bookmarkData)
+        res.send(bookmarkData)
           
     }
     else {

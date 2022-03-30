@@ -6,9 +6,7 @@ const jwt = require('jsonwebtoken')
 const {ProjectValidation} = require('../validation/validation')
 const Bookmark = require('../models/Bookmark')
 
-router.get('/' ,(req,res)=>{
-    res.send("project")
-})
+
 router.post('/add', async(req,res)=>{
     
     //checking if sending user is valid or not
