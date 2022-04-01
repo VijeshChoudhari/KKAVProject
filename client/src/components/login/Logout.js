@@ -26,7 +26,7 @@ function Logout() {
         throw error;
       }else{
         dispatch({type:"USER",payload:false})
-        
+        localStorage.removeItem("Cookie")
         console.log("Logout Successful")
         navigate('/login');
       }

@@ -1,11 +1,12 @@
-import {React,useEffect }from 'react'
+import {React,useEffect, useState }from 'react'
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 function Homepage() {
   const navigate=useNavigate()
   const callHomePage=async ()=>{
 
     try{
-      const res=await fetch('/user',{
+      await fetch('/user',{
         method:"GET",
         headers:{
           Accept:"application/json",
@@ -13,15 +14,12 @@ function Homepage() {
         },
         credentials:"include"
       
+      }).then(res=>res.json())
+      .then(json=>{
+        const{Cookie,...data}=json
+        
       })
-      const data = await res.json();
-      console.log(data);
-      if(!res.status===200){
-       
-        const error =new Error(res.error);
-        throw error;
-       
-      }
+     
     
     }catch(err){
     

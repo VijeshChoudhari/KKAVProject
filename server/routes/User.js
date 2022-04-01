@@ -31,8 +31,10 @@ Router.post('/login' , async(req,res)=>{
             httpOnly : true,
             maxAge : 4*60*60*1000 // 4hr 
         })
-        console.log(token)
-        res.send({ message : "Login Success"}) 
+        const Cookie={
+            userCookie:token
+        }
+        res.status(200).send(Cookie) 
     }
 })
 
@@ -52,7 +54,8 @@ Router.get('/' , async(req,res) =>{
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
-        res.send(data) 
+        data["Cookie"]=cookie
+        res.status(200).send(data) 
           
     }
     else {
@@ -76,8 +79,9 @@ Router.get('/profile',async(req,res)=>{
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
         const getUserStatus=await UserProfile.findOne({email : data.email })
+      
         if(getUserStatus){
-           
+            
             return res.status(200).send({message:"Profile added"})
         }else{
             return res.status(400).send({message:"Profile not added"})

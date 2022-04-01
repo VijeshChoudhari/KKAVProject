@@ -88,15 +88,44 @@ router.get('/userProject',async(req,res)=>{
 })
 //Router for retrieving all Project data of all users
 router.get('/all', async(req,res)=>{
-    UserProject.find((err,data)=>{
-        if(!err){
-            res.json(data)
+    const cookie = req.headers?.cookie
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
         }
-        else{
-            res.status(400).send({message : "Data not found"})
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        const getUserStatus=await UserProfile.findOne({email : data.email })
+        if(getUserStatus){
+            UserProject.find((err,data)=>{
+                if(!err){
+                    res.json(data)
+                }
+                else{
+                    res.status(400).send({message : "Data not found"})
+                }
+            })
+            
+        }else{
+            return res.status(400).send({message:"Profile not added"})
         }
-    })
+        
+        
+    }
+    else{
+        res.status(402).send({message : "You're not logged in"})
+    }
+
+    
 })
+
+
 
 router.post('/email', async(req,res)=>{
 

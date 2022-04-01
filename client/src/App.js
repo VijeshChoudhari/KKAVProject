@@ -34,7 +34,7 @@ function App() {
         <Route path='/addProfile' element={<AddProfile/>}/>
         <Route path="*" element={<p>Nothing is there!</p>}/>
         <Route path="/" element={<Homepage/>}> </Route>
-        ,<Route path="/projects" element={<Project/>}></Route>
+        ,<Route path="/projects" element={<Project/>}/>
         <Route path="/Profile" element={<Profiles/>}/>
        <Route path="/UserProject" element={<UserProject/>}/>
        <Route path="/AddProject" element={<AddUserProject/>}/>

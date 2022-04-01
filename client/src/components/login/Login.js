@@ -3,6 +3,7 @@ import {NavLink,useNavigate} from 'react-router-dom'
 import {UserContext} from "../../App"
 
 function Login() {
+  const[cookie,setCookie]=useState('')
   const {state,dispatch} =useContext(UserContext);
 
 
@@ -23,7 +24,7 @@ function Login() {
       })
      
       if(res1.status===200){
-        console.log("Profile added already")
+        
         navigate('/')
         
         
@@ -42,7 +43,7 @@ function Login() {
   const loginUser= async (e)=>{
     e.preventDefault();
   
-    const res=await fetch('/user/login',{
+   await fetch('/user/login',{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -50,18 +51,18 @@ function Login() {
       body:JSON.stringify({
         email,password
       }) 
-    })
-    const data= res.json()
-    if(res.status===400 || !data){
-
-      console.log("Invalid USER")
-    }else{
+    }).then(res=>res.json())
+    .then(json=>{
       dispatch({type:"USER",payload:true})
+      console.log(json)
+      setCookie(json.userCookie)
+      localStorage.setItem("Cookie",cookie);
       console.log("Login Successful")
       checkDataEntry()
-    }
-  
+    })
+ 
   }
+
   
   return (
     <>
