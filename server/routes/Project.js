@@ -2,13 +2,11 @@ const express = require('express')
 const router = express.Router()
 const UserProject = require('../models/Project') 
 const Signup = require('../models/Signup_model')
-const UserProfile = require('../models/User_profile')
 const jwt = require('jsonwebtoken')
 const {ProjectValidation} = require('../validation/validation')
+const Bookmark = require('../models/Bookmark')
 
-router.get('/' ,(req,res)=>{
-    res.send("project")
-})
+
 router.post('/add', async(req,res)=>{
     
     //checking if sending user is valid or not
@@ -42,7 +40,7 @@ router.post('/add', async(req,res)=>{
         //Saving Project to database
         try{
             const savedData = await userproject.save()
-            res.status(200).send(savedData)
+            res.send(savedData)
         }catch(err){
             res.send(err)
         }
@@ -65,21 +63,15 @@ router.get('/userProject',async(req,res)=>{
             return res.status(401).send({
                 message : "Unauthenticated"
             })
-        }
+        }    
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
-
-        const getUserStatus=await UserProfile.findOne({email : data.email })
-        const {_id,...profileData}=getUserStatus.toJSON()
-
         const Projects=await UserProject.find()
         const userProject= Projects.filter(item=>item.Email===data.email)
-        profileData["Projects"]=userProject
+       
         
-        
-        
-        res.status(200).send(profileData)
+        res.status(200).send(userProject)
 
     }
     else{
@@ -130,6 +122,13 @@ router.get('/all', async(req,res)=>{
 router.post('/email', async(req,res)=>{
 
     UserProject.find({Email : req.body.email}, (err,data)=>{
+        if(!err) res.json(data)
+        else res.status(400).send({message : "Not found"})
+    });
+})  
+router.post('/id', async(req,res)=>{
+
+    UserProject.find({_id : req.body.id}, (err,data)=>{
         if(!err) res.json(data)
         else res.status(400).send({message : "Not found"})
     });

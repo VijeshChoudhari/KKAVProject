@@ -2,6 +2,7 @@ const express = require('express')
 const Router = express.Router()
 const Signup = require('../models/Signup_model')
 const UserProfile = require('../models/User_profile')
+const bookmark = require('../models/Bookmark')
 const jwt = require('jsonwebtoken')
 const {LoginValidation} = require('../validation/validation')
 const {ProfileValidation} = require('../validation/validation')
@@ -41,7 +42,36 @@ Router.post('/login' , async(req,res)=>{
 Router.get('/' , async(req,res) =>{
     //Taking jwt token from cookie
     const cookie = req.headers?.cookie
+    
+    if(cookie){
+        
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send('Unauthorized')
+        }
+        
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        res.send(data) 
+        
+    }
+    else {
+        res.send("Not logged In")
+    }
+})
+//Logout on post request
+Router.post('/logout' , (req,res)=>{
+    res.cookie('jwt' , '' , {maxAge : 0})
+    res.status(200).send({message : "Logout success"})
+    
+})
 
+Router.get('/profileData',async(req,res)=>{
+    const cookie = req.headers?.cookie
+    
     if(cookie){
 
         const cookieValue = cookie.slice(4)
@@ -55,14 +85,14 @@ Router.get('/' , async(req,res) =>{
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
         data["Cookie"]=cookie
-        res.status(200).send(data) 
-          
+        res.status(200).send(data)      
     }
     else {
         res.send("Not logged In")
     }
-})
+        
 
+})
 Router.get('/profile',async(req,res)=>{
     const cookie = req.headers?.cookie
     if(cookie){
@@ -145,11 +175,69 @@ Router.post('/addProfile', async(req,res)=>{
     }
 })
 
-//Logout on post request
-Router.post('/logout' , (req,res)=>{
-    res.cookie('jwt' , '' , {maxAge : 0})
-    res.status(200).send({message : "Logout success"})
-    console.log("Logged Out")
+
+Router.get('/bookmark', async(req,res)=>{
+    
+    const cookie = req.headers?.cookie
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send('Unauthorized')
+        }
+
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        const getbookmark=await bookmark.findOne({Email : data.email })
+        if(!getbookmark) return res.status(402).send({message : "Bookmarks list are empty"})
+        const {_id,...bookmarkData}=getbookmark.toJSON()
+        res.send(bookmarkData)
+          
+    }
+    else {
+        res.send("Not logged In")
+    }
+    
+})
+
+
+Router.post('/bookmark/add', async(req,res)=>{
+    const cookie = req.headers?.cookie
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        }    
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        
+        const Bookmark = new bookmark({
+            Email : data.email,
+            ProjectId : req.body.projectid,
+            ProjectName : req.body.projectname
+        })
+
+        try{
+            const saveddata = await Bookmark.save()
+            res.send(saveddata)
+        }
+        catch(err){
+            res.send(err).status(402)
+        }
+
+    }
+    else{
+        res.status(402).send({message : "You're not logged in"})
+    }
 })
 
 module.exports = Router
