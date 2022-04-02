@@ -1,5 +1,6 @@
 import {React,useEffect, useState,useContext}from 'react'
 import { useNavigate,NavLink } from 'react-router-dom';
+import style from './Homepage.module.css'
 
 import {UserContext} from "../../App"
 function Homepage() {
@@ -45,17 +46,17 @@ function Homepage() {
   }
   return (
     <>
-    <div>
+    <div className={style.cont}>
       <h1>Search your interest from here.</h1>
      
       <p>Search from 1000 of projects and implement it.</p>
-    </div>
     <input type="text" placeholder='Search' />
     <button>Search</button>
     <br/>
     
     <NavLink to="/projects">Projects</NavLink><br/>
     <NavLink to="/externalProfile">Profile</NavLink>
+    </div>
     </>
   )
 }
