@@ -5,8 +5,7 @@ const Signup = require('../models/Signup_model')
 const jwt = require('jsonwebtoken')
 const {ProjectValidation} = require('../validation/validation')
 const Bookmark = require('../models/Bookmark')
-
-
+const UserProfile = require('../models/User_profile')
 router.post('/add', async(req,res)=>{
     
     //checking if sending user is valid or not
@@ -69,9 +68,10 @@ router.get('/userProject',async(req,res)=>{
         const {password , ...data} = user.toJSON()
         const Projects=await UserProject.find()
         const userProject= Projects.filter(item=>item.Email===data.email)
-       
-        
-        res.status(200).send(userProject)
+        const getUserStatus=await UserProfile.findOne({email : data.email })
+        const {_id,...profileData}=getUserStatus.toJSON()
+        profileData["Projects"]=userProject
+        res.status(200).send(profileData)
 
     }
     else{
@@ -118,14 +118,22 @@ router.get('/all', async(req,res)=>{
 })
 
 
-
-router.post('/email', async(req,res)=>{
-
-    UserProject.find({Email : req.body.email}, (err,data)=>{
-        if(!err) res.json(data)
-        else res.status(400).send({message : "Not found"})
-    });
+//get al user profile
+router.get('/email', async(req,res)=>{
+    const users=await UserProfile.find()
+ 
+    res.send(users)
+    
+      
+})
+router.post("/externalProjects",async(req,res)=>{
+    UserProject.find({Email:req.body.user},(err,data)=>{
+        if(err) res.send({message:"err"})
+        res.send(data)
+    })
 })  
+
+//for bookmark
 router.post('/id', async(req,res)=>{
 
     UserProject.find({_id : req.body.id}, (err,data)=>{

@@ -15,6 +15,9 @@ import Logout from './components/login/Logout';
 import Project from './components/ProjectPage/Project';
 import UserProject from './components/Profile/UserProject';
 import AddUserProject from './components/Profile/AddUserProject';
+import ExternalUserProjDetail from'./components/ProjectPage/ExternalUserProjDetail';
+import ExternalUserProfile from './components/ProjectPage/ExternalUserProfile';
+import Profile from './components/ProjectPage/Profile';
   //1: ContextAPI
   export const UserContext=createContext();
 function App() {
@@ -34,11 +37,13 @@ function App() {
         <Route path='/addProfile' element={<AddProfile/>}/>
         <Route path="*" element={<p>Nothing is there!</p>}/>
         <Route path="/" element={<Homepage/>}> </Route>
-        ,<Route path="/projects" element={<Project/>}/>
+        <Route path="/projects" element={<Project/>}/>
+        <Route path="/externalProfile" element={<Profile/>}/>
         <Route path="/Profile" element={<Profiles/>}/>
        <Route path="/UserProject" element={<UserProject/>}/>
        <Route path="/AddProject" element={<AddUserProject/>}/>
-
+       <Route path="/externalProject" element={<ExternalUserProjDetail/>}/>
+       <Route path="/externalUser" element={<ExternalUserProfile/>}/>
         <Route path='/logout' element={<Logout/>}/>
       </Routes>
     </BrowserRouter>

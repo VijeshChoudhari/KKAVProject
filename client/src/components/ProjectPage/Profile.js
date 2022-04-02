@@ -2,14 +2,14 @@ import React, { useEffect, useState,useContext} from 'react'
 import {UserContext} from "../../App"
 import {Link} from "react-router-dom"
 
-function Project() {
-  const [project,setProject]=useState([])
+function Profile() {
+  const [profile,setProfile]=useState([])
   const {state,dispatch} =useContext(UserContext);
-const[isLoading,setIsLoading]=useState(true)
+
   
   const fetchData= async ()=>{
     try{
-      await fetch('/projects/all',{
+      await fetch('/projects/email',{
         method:"GET",
         headers:{
           Accept:"application/json",
@@ -20,9 +20,8 @@ const[isLoading,setIsLoading]=useState(true)
     }).then(res=>res.json())
     .then(json=>{
       console.log(json)
-      setProject(json)
+      setProfile(json)
       dispatch({type:"USER",payload:true})
-      setIsLoading(false)
     })
 
     }
@@ -34,21 +33,16 @@ const[isLoading,setIsLoading]=useState(true)
    
  fetchData();
  }, [])
- if(isLoading){
-   return(
-     <div>IsLoading</div>
-   )
- }
-
+ 
   return (
   <>
-    <h1>Projects</h1>
-    <div>{project.map((data,key)=>{
-      return(<div><Link to="/externalProject"  state={data} key={key}>{data.Project_Name}</Link></div>)
+    <h1>Profile</h1>
+    <div>{profile.map((data,key)=>{
+      return(<div><Link to="/externalUser"state={data} key={key}>{data.name}</Link></div>)
     })}</div>
   </>
     
   )
 }
 
-export default Project
+export default Profile

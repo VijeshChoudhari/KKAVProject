@@ -1,11 +1,11 @@
 import {React,useEffect,useState} from 'react'
-import { useNavigate,NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import UserProjects from './UserProjects';
 
 
 
 function Profiles() {
-    const navigate=useNavigate()
+   
     const [data,setData]=useState({})
     const [project,setProject]=useState({})
     const [isLoading,setLoading]=useState(true)
@@ -49,8 +49,7 @@ function Profiles() {
       {data.social2Link}
   
       <h2>Project</h2>
-      
-        {
+      {
           project.map((data1,key)=>{
             
             return(
@@ -59,6 +58,7 @@ function Profiles() {
             )
           })
         }
+       
     <br/>
     <NavLink to="/AddProject">Add Project</NavLink>
       

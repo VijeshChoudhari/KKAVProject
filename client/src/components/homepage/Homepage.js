@@ -1,8 +1,12 @@
-import {React,useEffect, useState }from 'react'
-import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import {React,useEffect, useState,useContext}from 'react'
+import { useNavigate,NavLink } from 'react-router-dom';
+
+import {UserContext} from "../../App"
 function Homepage() {
+
   const navigate=useNavigate()
+  const [isLoading,setLoading]=useState(true)
+  const {state,dispatch} =useContext(UserContext);
   const callHomePage=async ()=>{
 
     try{
@@ -15,14 +19,14 @@ function Homepage() {
         credentials:"include"
       
       }).then(res=>res.json())
-      .then(json=>{
-        const{Cookie,...data}=json
-        
+      .then(()=>{
+          dispatch({type:"USER",payload:true})
+          setLoading(false)
       })
      
     
     }catch(err){
-    
+      dispatch({type:"USER",payload:false})
       console.log(err)
       navigate('/home');
     }
@@ -32,6 +36,13 @@ function Homepage() {
     callHomePage();
   }, [])
   
+  if(isLoading){
+    return(
+      <>
+      isLoading
+      </>
+    )
+  }
   return (
     <>
     <div>
@@ -41,7 +52,10 @@ function Homepage() {
     </div>
     <input type="text" placeholder='Search' />
     <button>Search</button>
+    <br/>
     
+    <NavLink to="/projects">Projects</NavLink><br/>
+    <NavLink to="/externalProfile">Profile</NavLink>
     </>
   )
 }

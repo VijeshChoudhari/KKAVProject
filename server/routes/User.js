@@ -32,13 +32,11 @@ Router.post('/login' , async(req,res)=>{
             httpOnly : true,
             maxAge : 4*60*60*1000 // 4hr 
         })
-        const Cookie={
-            userCookie:token
-        }
-        res.status(200).send(Cookie) 
+        
+        res.status(200).send({message:"Logged in Successfully"}) 
     }
 })
-
+//to check whether user is logged in or not
 Router.get('/' , async(req,res) =>{
     //Taking jwt token from cookie
     const cookie = req.headers?.cookie
@@ -55,6 +53,7 @@ Router.get('/' , async(req,res) =>{
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
+       
         res.send(data) 
         
     }
@@ -68,7 +67,7 @@ Router.post('/logout' , (req,res)=>{
     res.status(200).send({message : "Logout success"})
     
 })
-
+//to get user data 
 Router.get('/profileData',async(req,res)=>{
     const cookie = req.headers?.cookie
     
@@ -84,7 +83,7 @@ Router.get('/profileData',async(req,res)=>{
         //searching user from token
         const user = await Signup.findOne({_id : claims._id})
         const {password , ...data} = user.toJSON()
-        data["Cookie"]=cookie
+        
         res.status(200).send(data)      
     }
     else {
@@ -93,6 +92,7 @@ Router.get('/profileData',async(req,res)=>{
         
 
 })
+//to check user is authenticated or not
 Router.get('/profile',async(req,res)=>{
     const cookie = req.headers?.cookie
     if(cookie){

@@ -10,8 +10,8 @@ function Login() {
   const navigate=useNavigate()
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
-  const checkDataEntry = async()=>{
-    
+
+  const checkDataEntry = async()=>{  
     try{
       const res1=await fetch('/user/profile',{
         method:"GET",
@@ -20,14 +20,10 @@ function Login() {
           "Content-Type":"application/json"
         },
         credentials:"include"
-      
-      })
-     
-      if(res1.status===200){
-        
+      })     
+      if(res1.status===200){       
         navigate('/')
-        
-        
+
       }
       else{
         console.log("Profile not added already")
@@ -35,9 +31,7 @@ function Login() {
       }
     }catch(err){
       console.log(err)
- 
     }
-    
   }
   
   const loginUser= async (e)=>{
@@ -52,21 +46,21 @@ function Login() {
         email,password
       }) 
     }).then(res=>res.json())
-    .then(json=>{
+    .then(()=>{
       dispatch({type:"USER",payload:true})
-      console.log(json)
-      setCookie(json.userCookie)
-      localStorage.setItem("Cookie",cookie);
+     
+     
       console.log("Login Successful")
       checkDataEntry()
     })
  
   }
-
+    
   
   return (
     <>
-      <h1>Login Form!!!</h1>
+      <h1>Welcome to KKAV@Site</h1>
+      <p>Find. Explore. Share</p>
       <form method='POST'>
         <input type="email" placeholder='Enter your Email' name="email" value={email} onChange={(e)=>setEmail(e.target.value)} id="" />
         <br/>
