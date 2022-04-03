@@ -57,25 +57,15 @@ function Homepage() {
     <div className={styles.cont}>
       <p className={styles.heading}>Search your interest from here.</p>
      
-<<<<<<< HEAD
       <p className={styles.para}>Search from 1000 of projects and implement it.</p>
     <input type="text" placeholder='Search' />
     <button>Search</button>
-=======
-      <p>Search from 1000 of projects and implement it.</p>
-    </div>
-    <Serarch/>
->>>>>>> 1e87ea04638e4dceacfde114e19215c3bf10ae43
     <br/>
     
     <NavLink to="/projects">Projects</NavLink><br/>
     <NavLink to="/externalProfile">Profile</NavLink>
-<<<<<<< HEAD
     </div>
     
-=======
-   
->>>>>>> 1e87ea04638e4dceacfde114e19215c3bf10ae43
     </>
   )
 }
