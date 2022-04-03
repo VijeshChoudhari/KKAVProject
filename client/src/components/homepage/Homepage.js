@@ -2,11 +2,14 @@ import {React,useEffect, useState,useContext}from 'react'
 import { useNavigate,NavLink } from 'react-router-dom';
 
 import {UserContext} from "../../App"
+import Serarch from './assests/Serarch';
 function Homepage() {
 
   const navigate=useNavigate()
   const [isLoading,setLoading]=useState(true)
   const {state,dispatch} =useContext(UserContext);
+
+  const [value,setValue]=useState('')
   const callHomePage=async ()=>{
 
     try{
@@ -50,8 +53,7 @@ function Homepage() {
      
       <p>Search from 1000 of projects and implement it.</p>
     </div>
-    <input type="text" placeholder='Search' />
-    <button>Search</button>
+    <Serarch/>
     <br/>
     
     <NavLink to="/projects">Projects</NavLink><br/>

@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const {ProjectValidation} = require('../validation/validation')
 const Bookmark = require('../models/Bookmark')
 const UserProfile = require('../models/User_profile')
+
 router.post('/add', async(req,res)=>{
     
     //checking if sending user is valid or not
@@ -118,20 +119,38 @@ router.get('/all', async(req,res)=>{
 })
 
 
-//get al user profile
+//get all user profile
 router.get('/email', async(req,res)=>{
     const users=await UserProfile.find()
- 
     res.send(users)
     
       
 })
+
 router.post("/externalProjects",async(req,res)=>{
     UserProject.find({Email:req.body.user},(err,data)=>{
         if(err) res.send({message:"err"})
         res.send(data)
     })
 })  
+//routes for search
+/* router.post("/searchUser",async(req,res)=>{
+   const searchItem=req.body.value
+    const Userprofile=await UserProfile.find()
+    const project=await UserProject.find()
+    const newArray=Userprofile.concat(project)
+    const resultingArray=newArray.reduce((prev,curr,ind)=>{
+        const index=prev.findIndex(el=>el.email===curr.email);
+        if(index !==-1){
+            const key=Object.keys(curr)[1];
+            prev[index][key]=value[key]
+        }else{
+            prev.push(val)
+        }
+    })
+    res.send(resultingArray)
+  
+}) */
 
 //for bookmark
 router.post('/id', async(req,res)=>{
