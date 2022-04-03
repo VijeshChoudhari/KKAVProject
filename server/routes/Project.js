@@ -134,23 +134,15 @@ router.post("/externalProjects",async(req,res)=>{
     })
 })  
 //routes for search
-/* router.post("/searchUser",async(req,res)=>{
+router.post("/searchUser",async(req,res)=>{
    const searchItem=req.body.value
     const Userprofile=await UserProfile.find()
     const project=await UserProject.find()
     const newArray=Userprofile.concat(project)
-    const resultingArray=newArray.reduce((prev,curr,ind)=>{
-        const index=prev.findIndex(el=>el.email===curr.email);
-        if(index !==-1){
-            const key=Object.keys(curr)[1];
-            prev[index][key]=value[key]
-        }else{
-            prev.push(val)
-        }
-    })
-    res.send(resultingArray)
+    
+    res.send(newArray)
   
-}) */
+})
 
 //for bookmark
 router.post('/id', async(req,res)=>{
