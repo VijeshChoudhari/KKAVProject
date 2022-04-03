@@ -3,11 +3,14 @@ import { useNavigate,NavLink } from 'react-router-dom';
 import styles from'./Homepage.module.css'
 
 import {UserContext} from "../../App"
+import Serarch from './assests/Serarch';
 function Homepage() {
 
   const navigate=useNavigate()
   const [isLoading,setLoading]=useState(true)
   const {state,dispatch} =useContext(UserContext);
+
+  const [value,setValue]=useState('')
   const callHomePage=async ()=>{
 
     try{
@@ -54,15 +57,25 @@ function Homepage() {
     <div className={styles.cont}>
       <p className={styles.heading}>Search your interest from here.</p>
      
+<<<<<<< HEAD
       <p className={styles.para}>Search from 1000 of projects and implement it.</p>
     <input type="text" placeholder='Search' />
     <button>Search</button>
+=======
+      <p>Search from 1000 of projects and implement it.</p>
+    </div>
+    <Serarch/>
+>>>>>>> 1e87ea04638e4dceacfde114e19215c3bf10ae43
     <br/>
     
     <NavLink to="/projects">Projects</NavLink><br/>
     <NavLink to="/externalProfile">Profile</NavLink>
+<<<<<<< HEAD
     </div>
     
+=======
+   
+>>>>>>> 1e87ea04638e4dceacfde114e19215c3bf10ae43
     </>
   )
 }
