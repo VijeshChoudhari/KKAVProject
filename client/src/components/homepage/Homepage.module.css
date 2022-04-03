@@ -1,3 +1,16 @@
-.stylecont{
+.cont{
+    height: 40rem;
+    width: 70rem;
     background-color: #1f2735;
+    border: 0.2rem solid white;
+}
+.heading{
+    font-size: 1.7rem;
+    padding-top: 0rem;
+    line-height: 0px;
+    text-align: center;
+}
+.para{
+    text-align: center;
+    opacity: 0.7;
 }
