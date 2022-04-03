@@ -1,5 +1,6 @@
 import {React,useEffect, useState,useContext}from 'react'
 import { useNavigate,NavLink } from 'react-router-dom';
+import style from './Homepage.module.css'
 
 import {UserContext} from "../../App"
 import Serarch from './assests/Serarch';
@@ -48,7 +49,7 @@ function Homepage() {
   }
   return (
     <>
-    <div>
+    <div className={style.cont}>
       <h1>Search your interest from here.</h1>
      
       <p>Search from 1000 of projects and implement it.</p>
@@ -58,6 +59,7 @@ function Homepage() {
     
     <NavLink to="/projects">Projects</NavLink><br/>
     <NavLink to="/externalProfile">Profile</NavLink>
+   
     </>
   )
 }

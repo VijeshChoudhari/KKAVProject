@@ -2,6 +2,7 @@ import React, { useContext,useEffect } from 'react'
 
 import {NavLink} from 'react-router-dom'
 import { UserContext } from '../../App'
+import styles from './Navbar.module.css'
 export const Navbar = () => {
   const {state,dispatch}=useContext(UserContext);
  
@@ -10,21 +11,27 @@ export const Navbar = () => {
 
       return(
         <>
-        <NavLink to="/">Logo</NavLink> {" "}
-        <NavLink to="/">Home</NavLink> | {" "}
-        <NavLink to="/Profile">Profile</NavLink> | {" "}
-        <NavLink to="/contact">Contact</NavLink> |  {" "}
-        <NavLink to="/logout">Logout</NavLink>
+        <div className={styles.Navbar}>
+
+        <NavLink className={styles.a} to="/">Logo</NavLink> {" "}
+        <NavLink className={styles.a} to="/">Home</NavLink>  {" "}
+        <NavLink className={styles.a} to="/Profile">Profile</NavLink>  {" "}
+        <NavLink className={styles.a} to="/contact">Contact</NavLink>   {" "}
+        <NavLink className={styles.rightnav+' '+styles.a} to="/logout">Logout</NavLink>
+        </div>
         </>
       )
     }else{
       return(
         <>
-        <NavLink to="/home">Logo</NavLink> {" "}
-        <NavLink to="/home">Home</NavLink> | {" "}
-        <NavLink to="/contact">Contact</NavLink> |  {" "}
+        <div className={styles.Navbar}>
+
+        <NavLink className={styles.a} to="/home">Logo</NavLink> {" "}
+        <NavLink className={styles.a} to="/home">Home</NavLink>  {" "}
+        <NavLink className={styles.a} to="/contact">Contact</NavLink>  {" "}
        
-        <NavLink to="/register">Register</NavLink>
+        <NavLink className={styles.rightnav+' '+styles.a} to="/register">Register</NavLink>
+        </div>
     
         </>
       )
