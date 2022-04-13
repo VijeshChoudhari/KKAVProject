@@ -1,5 +1,6 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
+import Serarch from '../homepage/assests/Serarch'
 function ExternalUserProjDetail() {
   const location=useLocation()
  const value=location.state
@@ -19,6 +20,12 @@ function ExternalUserProjDetail() {
       }
       <a href={value.Github_Link} rel="noreferrer">{value.Github_Link}</a><br/>
       {value.About_Project}
+      <br />
+    <br />
+    
+    {/* BookMark */}
+    {/* Searching */}
+    <Serarch/>
     </div>
   )
 }

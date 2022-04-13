@@ -1,5 +1,8 @@
 import React from 'react'
 import {useLocation} from 'react-router-dom'
+import Serarch from '../homepage/assests/Serarch'
+
+//User project View
 function UserProject() {
   const location=useLocation()
  const value=location.state
@@ -18,6 +21,9 @@ function UserProject() {
       }
       <a href={value.Github_Link} rel="noreferrer">{value.Github_Link}</a><br/>
       {value.About_Project}
+      <br/>
+      <br/>
+      <Serarch/>
     </div>
   )
 }
