@@ -135,25 +135,15 @@ router.post("/externalProjects",async(req,res)=>{
 })  
 //routes for search
 router.get("/searchUser",async(req,res)=>{
-  
-    const Userprofile=await UserProfile.find()
     const project=await UserProject.find()
-    var finalArr = [];
-    Userprofile.map(item => {
-    project.map(item1 => {
-        if (item.email === item1.Email) {
-        console.log(item)
-        console.log(item1)
-           
-         finalArr.push(Object.assign(item,item1));
-         
-        }
-    })
-    })
+    const userProfile=await UserProfile.find()
+    const data={}
+    data["Profile"]=userProfile
+    data["Project"]=project
+    if(data){
+        res.send(data)
+    }
     
-    
-    
-    res.send(finalArr)
 })
 
 //for bookmark

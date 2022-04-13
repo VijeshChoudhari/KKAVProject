@@ -3,6 +3,7 @@ import {useLocation} from 'react-router-dom'
 function ExternalUserProjDetail() {
   const location=useLocation()
  const value=location.state
+ console.log(value)
  
  const values=value.Tech_Stack
   return (

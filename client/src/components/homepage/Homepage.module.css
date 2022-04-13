@@ -1,16 +1,17 @@
 .cont{
-    height: 40rem;
+    height: 38rem;
     width: 70rem;
     background-color: #1f2735;
-    border: 0.2rem solid white;
+    border: 0.1rem solid rgb(47, 46, 46);
 }
 .heading{
     font-size: 1.7rem;
+   
     padding-top: 0rem;
     line-height: 0px;
     text-align: center;
 }
 .para{
     text-align: center;
-    opacity: 0.7;
+    opacity: 0.3;
 }
