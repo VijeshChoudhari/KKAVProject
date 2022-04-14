@@ -101,7 +101,7 @@ const [searchFilter,setSearchFilter]=useState('')
     
   return (
     <div>
-       <input type="text" placeholder='Search' value={text} onChange={(e)=>onChangeHandler(e.target.value)} />
+      <input type="text" placeholder='Search' value={text} onChange={(e)=>onChangeHandler(e.target.value)} />
    
     
     {data?  searchFilter==="Project"? <Link to="/externalProject" state={data}>Go to</Link>:<Link to="/externalUser" state={data}>Go to</Link>:<button onClick={onpoplateHandler}>Search</button>}
