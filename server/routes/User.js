@@ -36,6 +36,7 @@ Router.post('/login' , async(req,res)=>{
         res.status(200).send({message:"Logged in Successfully"}) 
     }
 })
+
 //to check whether user is logged in or not
 Router.get('/' , async(req,res) =>{
     //Taking jwt token from cookie
@@ -97,8 +98,10 @@ Router.get('/profile',async(req,res)=>{
     const cookie = req.headers?.cookie
     if(cookie){
 
+        
         const cookieValue = cookie.slice(4)
         const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
         
         if(!claims){
             return res.status(401).send({
