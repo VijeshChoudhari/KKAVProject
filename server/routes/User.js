@@ -124,7 +124,8 @@ Router.get('/profile',async(req,res)=>{
 
     }else{
         res.send("Not logged In")
-    }    
+    }
+    
 })
 Router.post('/addProfile', async(req,res)=>{
 
