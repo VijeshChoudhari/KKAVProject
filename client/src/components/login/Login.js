@@ -1,7 +1,6 @@
 import {React,useState,useContext} from 'react'
 import {NavLink,useNavigate} from 'react-router-dom'
 import {UserContext} from "../../App"
-import styles from './Login.module.css'
 
 function Login() {
   const[cookie,setCookie]=useState('')
@@ -60,19 +59,19 @@ function Login() {
   
   return (
     <>
-      <p className={styles.heading}><b>Welcome to KKAV@Site</b></p>
-      <p className={styles.heading2}>Find. Explore. Share</p>
+      <h1>Welcome to KKAV@Site</h1>
+      <p>Find. Explore. Share</p>
       <form method='POST'>
-        <input className={styles.input} type="email" placeholder='Enter your Email' name="email" value={email} onChange={(e)=>setEmail(e.target.value)} id="" />
+        <input type="email" placeholder='Enter your Email' name="email" value={email} onChange={(e)=>setEmail(e.target.value)} id="" />
         <br/>
         <br/>
-        <input className={styles.input} type="password" placeholder='Password'  name="password" email={password} onChange={(e)=>setPassword(e.target.value)}  />
+        <input type="password" placeholder='Password'  name="password" email={password} onChange={(e)=>setPassword(e.target.value)}  />
         <br/>
         <br/>
-        <NavLink className={styles.linktoregister} to="/register">Create account</NavLink> 
-        <input className={styles.submitlogin} type="submit" name="Login" value="Log In" onClick={loginUser}id="" />
+        <input type="submit" name="Login" value="Log In" onClick={loginUser}id="" />
       </form>
-      <br/> 
+      <br/>
+     <NavLink to="/register">Register</NavLink> 
     </>
   )
 }
