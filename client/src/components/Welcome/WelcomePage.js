@@ -8,7 +8,7 @@ function WelcomePage() {
       <h1>Welcome!</h1>
       <h2>Create your own project portfolio</h2>
       <h2>Explore others project</h2>
-      <NavLink to='/login'>Join Now</NavLink>
+      <NavLink to='/register'>Join Now</NavLink>
     </div>
     
     </>
