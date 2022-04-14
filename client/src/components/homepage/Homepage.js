@@ -1,5 +1,6 @@
 import {React,useEffect, useState,useContext}from 'react'
 import { useNavigate,NavLink } from 'react-router-dom';
+import search from './css material/search.png'
 import styles from'./Homepage.module.css'
 
 import {UserContext} from "../../App"
@@ -52,14 +53,14 @@ function Homepage() {
   }
   return (
     <>
-    
-
     <div className={styles.cont}>
       <p className={styles.heading}>Search your interest from here.</p>
      
       <p className={styles.para}>Search from 1000 of projects and implement it.</p>
-    <input type="text" placeholder='Search' />
-    <button>Search</button>
+    <div className={styles.inputdiv}>
+    <input className={styles.searchbox} type="text" placeholder='Search' />
+    <button className={styles.searchbutton}><img className={styles.iconimg} src={search}></img></button>
+    </div>
     <br/>
     
     <NavLink to="/projects">Projects</NavLink><br/>
