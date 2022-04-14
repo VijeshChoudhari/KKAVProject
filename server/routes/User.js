@@ -98,6 +98,7 @@ Router.get('/profile',async(req,res)=>{
     if(cookie){
 
         const cookieValue = cookie.slice(4)
+        console.log(cookieValue)
         const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
         
         if(!claims){
@@ -119,8 +120,7 @@ Router.get('/profile',async(req,res)=>{
 
     }else{
         res.send("Not logged In")
-    }
-    
+    }    
 })
 Router.post('/addProfile', async(req,res)=>{
 

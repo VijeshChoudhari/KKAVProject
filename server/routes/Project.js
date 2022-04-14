@@ -4,8 +4,9 @@ const UserProject = require('../models/Project')
 const Signup = require('../models/Signup_model')
 const jwt = require('jsonwebtoken')
 const {ProjectValidation} = require('../validation/validation')
-const Bookmark = require('../models/Bookmark')
+const UserBookmark=require('../models/Bookmark')
 const UserProfile = require('../models/User_profile')
+
 
 router.post('/add', async(req,res)=>{
     
@@ -148,11 +149,118 @@ router.get("/searchUser",async(req,res)=>{
 
 //for bookmark
 router.post('/id', async(req,res)=>{
+    const cookie = req.headers?.cookie
+    if(cookie){
 
-    UserProject.find({_id : req.body.id}, (err,data)=>{
-        if(!err) res.json(data)
-        else res.status(400).send({message : "Not found"})
-    });
-})  
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        } 
+        //const projects= await UserProject.find()
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+        const userProject=await UserProject.findOne({Project_Name:req.body.project_name})
+        const Querybook=await UserBookmark.find()
+        const QueryProject=Querybook.filter(item=>item.Email===data.email)
+
+         if(userProject.Email!=data.email){
+        
+               const data=QueryProject.filter(item=>item.ProjectName===req.body.project_name)
+              
+               if(data && data.length>0){
+                  
+                   res.status(200).send(data)
+               }
+               else{
+                   res.status(404).send({message:"Not Found"})
+               }
+            
+            
+      }else{
+            res.send({message:"User Project"})
+        }
+
+    }
+    else{
+        res.status(402).send({message : "You're not logged in"})
+    }
+    
+    
+    
+    
+}) 
+router.post('/addBookmark', async(req,res)=>{
+        
+    //checking if sending user is valid or not
+    const cookie = req.headers?.cookie
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        }
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+
+        
+       
+
+        const userbookmark = new UserBookmark({
+            Email : data.email,
+            ProjectId:req.body.id,
+            ProjectName : req.body.project_name,
+            
+        })
+        //Saving Project to database
+        try{
+            const savedData = await userbookmark.save()
+            res.send(savedData)
+        }catch(err){
+            res.send(err)
+        }
+
+    }
+    else{
+        res.status(402).send({message : "You're not logged in"})
+    }
+
+})
+
+router.get('/getBookmarks',async(req,res)=>{
+    const cookie = req.headers?.cookie
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        }    
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+       
+
+        const bookmarks=await UserBookmark.find()
+        const userbookmark=bookmarks.filter(item=>item.Email===data.email)
+        res.status(200).send(userbookmark)
+
+    }
+    else{
+        res.status(402).send({message : "You're not logged in"})
+    }
+    
+})
 
 module.exports = router

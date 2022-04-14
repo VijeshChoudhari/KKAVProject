@@ -27,6 +27,11 @@ const AddProjectSchema = mongoose.Schema({
         type : Date,
         required : true,
         default : Date.now,
+    },
+    Bookmark:{
+        type:Boolean,
+        required:true,
+        default:false
     }
 });
 
