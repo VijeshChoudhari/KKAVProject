@@ -1,14 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import styles from './Welcomepage.module.css'
 
 function WelcomePage() {
   return (
     <>
     <div>
-      <h1>Welcome!</h1>
-      <h2>Create your own project portfolio</h2>
-      <h2>Explore others project</h2>
-      <NavLink to='/register'>Join Now</NavLink>
+      <p className={styles.welcome}><b>Welcome!</b></p>
+      <p className={styles.intro}>Create your own project portfolio <br></br>
+      Explore others project</p>
+      <NavLink className={styles.join} to='/register'>Join Now.</NavLink>
     </div>
     
     </>

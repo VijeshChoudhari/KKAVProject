@@ -33,7 +33,7 @@ Router.post('/login' , async(req,res)=>{
             maxAge : 4*60*60*1000 // 4hr 
         })
         
-        res.status(200).send({message:"Logged in Successfully"}) 
+        res.send({message:"Logged in Successfully"}) 
     }
 })
 //to check whether user is logged in or not
@@ -42,7 +42,7 @@ Router.get('/' , async(req,res) =>{
     const cookie = req.headers?.cookie
     
     if(cookie){
-        
+        console.log(cookie)
         const cookieValue = cookie.slice(4)
         const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
         
@@ -98,7 +98,11 @@ Router.get('/profile',async(req,res)=>{
     if(cookie){
 
         const cookieValue = cookie.slice(4)
-        console.log(cookieValue)
+        console.log(cookieValue);
+        jwt.verify()
+        if(jwt.verify(cookieValue , process.env.TOKEN_SECRET)){
+            console.log('error here')
+        }
         const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
         
         if(!claims){
