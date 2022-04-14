@@ -1,9 +1,10 @@
 import {React,useEffect,useState} from 'react'
 import { NavLink } from 'react-router-dom';
+import Serarch from '../homepage/assests/Serarch';
 import UserProjects from './UserProjects';
 
 
-
+//User Profile View
 function Profiles() {
    
     const [data,setData]=useState({})
@@ -61,8 +62,13 @@ function Profiles() {
        
     <br/>
     <NavLink to="/AddProject">Add Project</NavLink>
-      
+    <br />
+    <br />
     
+    {/* BookMark */}
+    {/* Searching */}
+    <Serarch/> 
+     
       </>
     )
   

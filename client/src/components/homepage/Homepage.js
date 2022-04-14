@@ -9,9 +9,11 @@ function Homepage() {
 
   const navigate=useNavigate()
   const [isLoading,setLoading]=useState(true)
+
   const {state,dispatch} =useContext(UserContext);
 
-  const [value,setValue]=useState('')
+
+
   const callHomePage=async ()=>{
 
     try{
@@ -51,16 +53,16 @@ function Homepage() {
       </>
     )
   }
+ 
   return (
     <>
     <div className={styles.cont}>
       <p className={styles.heading}>Search your interest from here.</p>
      
       <p className={styles.para}>Search from 1000 of projects and implement it.</p>
-    <div className={styles.inputdiv}>
-    <input className={styles.searchbox} type="text" placeholder='Search' />
-    <button className={styles.searchbutton}><img className={styles.iconimg} src={search}></img></button>
-    </div>
+      
+    <Serarch/>
+    
     <br/>
     
     <NavLink to="/projects">Projects</NavLink><br/>

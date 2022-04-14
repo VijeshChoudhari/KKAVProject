@@ -134,14 +134,16 @@ router.post("/externalProjects",async(req,res)=>{
     })
 })  
 //routes for search
-router.post("/searchUser",async(req,res)=>{
-   const searchItem=req.body.value
-    const Userprofile=await UserProfile.find()
+router.get("/searchUser",async(req,res)=>{
     const project=await UserProject.find()
-    const newArray=Userprofile.concat(project)
+    const userProfile=await UserProfile.find()
+    const data={}
+    data["Profile"]=userProfile
+    data["Project"]=project
+    if(data){
+        res.send(data)
+    }
     
-    res.send(newArray)
-  
 })
 
 //for bookmark

@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useContext} from 'react'
 import {UserContext} from "../../App"
 import {Link} from "react-router-dom"
+import Serarch from '../homepage/assests/Serarch';
 
 function Profile() {
   const [profile,setProfile]=useState([])
@@ -40,6 +41,12 @@ function Profile() {
     <div>{profile.map((data,key)=>{
       return(<div><Link to="/externalUser"state={data} key={key}>{data.name}</Link></div>)
     })}</div>
+    <br />
+    <br />
+    
+    {/* BookMark */}
+    {/* Searching */}
+    <Serarch/>
   </>
     
   )
