@@ -2,6 +2,7 @@ import React, { useEffect, useState,useContext} from 'react'
 import {UserContext} from "../../App"
 import {Link} from "react-router-dom"
 import Serarch from '../homepage/assests/Serarch';
+import Bookmarks from '../homepage/assests/Bookmarks';
 
 function Project() {
   const [project,setProject]=useState([])
@@ -51,6 +52,9 @@ const[isLoading,setIsLoading]=useState(true)
     <br />
     
     {/* BookMark */}
+    <Bookmarks/>
+    <br />
+    <br />
     {/* Searching */}
     <Serarch/>
   </>

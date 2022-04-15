@@ -5,6 +5,7 @@ import styles from'./Homepage.module.css'
 
 import {UserContext} from "../../App"
 import Serarch from './assests/Serarch';
+import Bookmarks from './assests/Bookmarks';
 function Homepage() {
 
   const navigate=useNavigate()
@@ -56,6 +57,7 @@ function Homepage() {
  
   return (
     <>
+    <div>
     <div className={styles.cont}>
       <p className={styles.heading}>Search your interest from here.</p>
      
@@ -68,7 +70,10 @@ function Homepage() {
     <NavLink to="/projects">Projects</NavLink><br/>
     <NavLink to="/externalProfile">Profile</NavLink>
     </div>
-    
+    <br/>
+    <br/>
+    <Bookmarks/>
+    </div>
     </>
   )
 }

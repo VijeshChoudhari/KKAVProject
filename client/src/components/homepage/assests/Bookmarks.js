@@ -14,7 +14,7 @@ function Bookmarks() {
              
           }).then(res=>res.json())
           .then(json=>{
-           console.log(json)
+         
             setData(json)
             setIsLoading(false)
           })
@@ -24,8 +24,8 @@ function Bookmarks() {
           }
     }
     useEffect(()=>{
-        getBookmarks()
-    },[])
+        getBookmarks() 
+    },[data])
 
     const RemoveBookMark=()=>{
 
@@ -38,7 +38,7 @@ function Bookmarks() {
     return (
     <div>{data.map((user,key)=>{
         return(
-            <><div>{user.ProjectName}<button onClick={RemoveBookMark}>remove</button>
+            <><div>{user.ProjectName} <button onClick={RemoveBookMark}>X</button>
             </div>
             </>
         )

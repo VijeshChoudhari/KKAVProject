@@ -15,7 +15,9 @@ console.log(value)
 
  const project_name=value.Project_Name
 const [status,setStatus]=useState(false)
+const [reload,setReload]=useState(false)
 const [user,setUser]=useState(false)
+const[isLoading,setIsLoading]=useState(true)
 const checkBookmark=async()=>{
   try{
     await fetch('/projects/id',{
@@ -29,15 +31,24 @@ const checkBookmark=async()=>{
        })
   }).then(data=>{
     if(data.status===404){
+      setIsLoading(false)
       setStatus(false)
+      
+      
      
     }
     else if(data.message==="User Project"){
+      setIsLoading(false)
       setUser(true)
+   
+      
     }
     else if(data.status===200){
+      setIsLoading(false)
       setStatus(true)
       data=data.json()
+     
+      
     }
   })
   
@@ -60,6 +71,8 @@ const checkBookmark=async()=>{
   }).then(data=>data.json())
   .then(json=>{
     console.log(json)
+    setReload(true)
+    
     
   })
 }
@@ -70,6 +83,8 @@ const checkBookmark=async()=>{
  useEffect(()=>{
   checkBookmark()
  },[])
+
+ 
 
   return (
     <div>
@@ -88,10 +103,11 @@ const checkBookmark=async()=>{
     <br />
     
     {/* BookMark */}
-    {user?"":status? "":<button onClick={BookmarkNow}>Save</button>}
+    {isLoading?"Loading":user?"":status? "":reload?"":<button onClick={BookmarkNow}>Save</button>}
     
-   
-    <Bookmarks/>
+    
+
+   <Bookmarks/>
     <br />
     <br />
     {/* Searching */}

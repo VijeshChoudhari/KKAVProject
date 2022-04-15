@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
+import Bookmarks from '../homepage/assests/Bookmarks'
+import Serarch from '../homepage/assests/Serarch'
 import ExternalProject from './ExternalProject'
 function ExternalUserProfile() {
   const location=useLocation()
@@ -56,6 +58,12 @@ console.log(user)
             )
           })
         }
+        <br/>
+        <br />
+        <Bookmarks/>
+        <br />
+        <br />
+        <Serarch/>
     </div>
     
   )

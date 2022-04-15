@@ -2,6 +2,7 @@ import React, { useEffect, useState,useContext} from 'react'
 import {UserContext} from "../../App"
 import {Link} from "react-router-dom"
 import Serarch from '../homepage/assests/Serarch';
+import Bookmarks from '../homepage/assests/Bookmarks';
 
 function Profile() {
   const [profile,setProfile]=useState([])
@@ -45,8 +46,11 @@ function Profile() {
     <br />
     
     {/* BookMark */}
+    <Bookmarks/>
+    <br />
+    <br />
     {/* Searching */}
-    <Serarch/>
+    <Serarch/> 
   </>
     
   )
