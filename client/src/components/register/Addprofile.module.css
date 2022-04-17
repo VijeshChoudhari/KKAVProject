@@ -1,0 +1,83 @@
+.profilecont {
+    background-color: #1F2735;
+    margin: 1rem 9rem;
+    border: #1F2735 solid;
+    border-radius: 0.3rem;
+}
+
+.heading {
+    background-color: #1F2735;
+    margin: 0rem 1.8rem;
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.heading2 {
+    background-color: #1F2735;
+    margin: 0rem 1.8rem;
+    opacity: 0.2;
+}
+
+.form {
+    background-color: #1F2735;
+    margin: 0rem 2.5rem;
+    margin-top: 3rem;
+}
+
+.label {
+    background-color: #1F2735;
+    font-size: 24px;
+    font-weight: 550;
+}
+
+.input {
+    margin-top: 0.4rem;
+    padding: 0.3rem 0.4rem;
+    width: 20rem;
+    color: white;
+    border-style: none;
+    height: 2rem;
+    border-radius: 5px;
+    background-color: #45474E;
+    font-size: 1.1rem;
+    margin-bottom: 1.7rem;
+}
+
+.gitlab {
+    margin-left: 30.2rem;
+}
+
+.gitinp {
+    margin-left: 13.4rem;
+}
+
+.linkedlab {
+    margin-left: 30rem;
+}
+
+.linkedinp {
+    margin-left: 11.3rem;
+}
+
+.radio {
+
+    margin-right: 0.4rem;
+}
+
+.radiolab {
+    background-color: #1F2735;
+    margin-right: 3rem;
+}
+
+ .submit {
+    background-color: #0094FF;
+    font-weight: 600;
+    padding: 0.5rem 0rem;
+    margin: 0rem 16rem;
+    width: 10rem;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    border-style: none;
+} 
+
