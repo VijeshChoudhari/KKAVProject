@@ -21,7 +21,7 @@ const[isLoading,setIsLoading]=useState(true)
       
     }).then(res=>res.json())
     .then(json=>{
-      console.log(json)
+      
       setProject(json)
       dispatch({type:"USER",payload:true})
       setIsLoading(false)

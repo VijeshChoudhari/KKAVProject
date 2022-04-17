@@ -6,7 +6,7 @@ import Serarch from '../homepage/assests/Serarch'
 function UserProject() {
   const location=useLocation()
  const value=location.state
- console.log("fro userProject",value)
+
  const values=value.Tech_Stack
   return (
     <div>

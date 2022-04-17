@@ -1,9 +1,12 @@
 import React,{useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 
 function Bookmarks() {
-    const [data,setData]=useState()
+    const [data,setData]=useState({})
     const [isLoading,setIsLoading]=useState(true)
+    
     const getBookmarks=async()=>{
+      let isMounted = true
         try{
             await fetch('/projects/getBookmarks',{
               method:"GET",
@@ -14,9 +17,15 @@ function Bookmarks() {
              
           }).then(res=>res.json())
           .then(json=>{
-         
-            setData(json)
-            setIsLoading(false)
+            if(json.message==="Empty"){
+            
+              setIsLoading(false)
+
+            }else{
+              if(isMounted) setData(json)
+              setIsLoading(false)
+            }
+            isMounted=false    
           })
           }
           catch(err){
@@ -24,22 +33,26 @@ function Bookmarks() {
           }
     }
     useEffect(()=>{
+      
         getBookmarks() 
+        
     },[data])
 
-    const RemoveBookMark=()=>{
-
-    }
+    
     if(isLoading){
         return(
             <>isLoading</>
         )
     }
     return (
-    <div>{data.map((user,key)=>{
+    <div>
+      <h1>Bookmarks</h1>
+      {data.map((user,key)=>{
         return(
-            <><div>{user.ProjectName} <button onClick={RemoveBookMark}>X</button>
-            </div>
+            <>
+            
+              <Link to="/userBookmarks" state={user}  key={user._id}>{user.ProjectName}</Link>
+           
             </>
         )
     })}</div>
