@@ -18,6 +18,7 @@ import AddUserProject from './components/Profile/AddUserProject';
 import ExternalUserProjDetail from'./components/ProjectPage/ExternalUserProjDetail';
 import ExternalUserProfile from './components/ProjectPage/ExternalUserProfile';
 import Profile from './components/ProjectPage/Profile';
+import BookmarkView from './components/Profile/BookmarkView';
   //1: ContextAPI
   export const UserContext=createContext();
 function App() {
@@ -43,6 +44,7 @@ function App() {
        <Route path="/UserProject" element={<UserProject/>}/>
        <Route path="/AddProject" element={<AddUserProject/>}/>
        <Route path="/externalProject" element={<ExternalUserProjDetail/>}/>
+       <Route path="/userBookmarks" element={<BookmarkView/>}/>
        <Route path="/externalUser" element={<ExternalUserProfile/>}/>
         <Route path='/logout' element={<Logout/>}/>
       </Routes>

@@ -7,7 +7,7 @@ import Serarch from '../homepage/assests/Serarch'
 function ExternalUserProjDetail() {
 const location=useLocation()
 const value=location.state
-console.log(value)
+
 
  const values=value.Tech_Stack
  const email=value.email
@@ -30,7 +30,7 @@ const checkBookmark=async()=>{
       id,project_name
        })
   }).then(data=>{
-    if(data.status===404){
+    if(data.status===204){
       setIsLoading(false)
       setStatus(false)
       
@@ -70,7 +70,7 @@ const checkBookmark=async()=>{
        })
   }).then(data=>data.json())
   .then(json=>{
-    console.log(json)
+    
     setReload(true)
     
     

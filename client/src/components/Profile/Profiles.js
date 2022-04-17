@@ -1,5 +1,6 @@
 import {React,useEffect,useState} from 'react'
 import { NavLink } from 'react-router-dom';
+import Bookmarks from '../homepage/assests/Bookmarks';
 import Serarch from '../homepage/assests/Serarch';
 import UserProjects from './UserProjects';
 
@@ -25,8 +26,7 @@ function Profiles() {
          .then(res=>res.json())
          .then(json=>{
           const {Projects,...data}=json
-          console.log(data) 
-          console.log(Projects)
+          
           setData(data)
           setProject(Projects)  
           setLoading(false)
@@ -66,6 +66,9 @@ function Profiles() {
     <br />
     
     {/* BookMark */}
+    <Bookmarks/>
+    <br />
+    <br />
     {/* Searching */}
     <Serarch/> 
      

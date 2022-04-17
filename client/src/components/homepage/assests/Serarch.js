@@ -26,8 +26,7 @@ const [searchFilter,setSearchFilter]=useState('')
       const {Profile,Project}=json
       setProfile(Profile)
       setProject(Project)
-      console.log(Profile)
-      console.log(Project)
+     
     })
     }
     catch(err){
@@ -53,7 +52,7 @@ const [searchFilter,setSearchFilter]=useState('')
       }else if(searchFilter==="Project") {
         matches=project.filter(projects=>{
           const regex=new RegExp(`${text}`,"gi");
-          console.log(projects.Project_Name.match(regex))
+         
           return projects.Project_Name.match(regex)
       })
       }
@@ -78,7 +77,7 @@ const [searchFilter,setSearchFilter]=useState('')
         return projects.Project_Name===text 
          })
       setData(project[indexOfProject])
-      console.log(project[indexOfProject])
+      
 
     }
    

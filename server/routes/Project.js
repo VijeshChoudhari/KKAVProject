@@ -175,7 +175,7 @@ router.post('/id', async(req,res)=>{
                    res.status(200).send(data)
                }
                else{
-                   res.status(404).send({message:"Not Found"})
+                   res.status(204).send({message:"Not Found"})
                }
 
 
@@ -215,6 +215,7 @@ router.post('/addBookmark', async(req,res)=>{
 
         const userbookmark = new UserBookmark({
             Email : data.email,
+            OwnerEmail:req.body.ownerEmail,
             ProjectId:req.body.id,
             ProjectName : req.body.project_name,
 
@@ -260,5 +261,48 @@ router.get('/getBookmarks',async(req,res)=>{
         res.status(402).send({message : "You're not logged in"})
     }
 
+})
+router.post('/bookmarked',async(req,res)=>{
+    const cookie = req.headers?.cookie
+    if(cookie){
+
+        const cookieValue = cookie.slice(4)
+        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+
+        if(!claims){
+            return res.status(401).send({
+                message : "Unauthenticated"
+            })
+        }    
+        //searching user from token
+        const user = await Signup.findOne({_id : claims._id})
+        const {password , ...data} = user.toJSON()
+
+        //get project
+       // const project=await UserProject.find()
+        //const filteredProject=project.filter(item=>item.Email!=data.email)
+
+        const userProject=await UserProject.find({_id:req.body.projectId})
+        const project=userProject[0]
+        res.send(project)
+
+    }
+    else{
+        res.status(402).send({message : "You're not logged in"})
+    }
+})
+router.delete('/remove',async(req,res)=>{
+    await UserBookmark.findOneAndDelete({projectId:req.body.id})
+    try{
+        res.status(204).json({
+            status : 'Success',
+            message:'Deleted'
+        })
+      }catch(err){
+          res.status(500).json({
+              status: 'Failed',
+              message : err
+          })
+      }
 })
 module.exports = router

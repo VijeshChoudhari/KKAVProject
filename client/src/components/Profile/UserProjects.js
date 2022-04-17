@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function UserProjects(props) {
   const data=props.project
-  console.log("from userprojects",data)
+ 
   if(data){
     return (
       <div>
