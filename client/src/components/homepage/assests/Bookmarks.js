@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
+import styles from './Bookmark.module.css'
 
 function Bookmarks(props) {
   const postLength=props.value
@@ -40,13 +41,13 @@ function Bookmarks(props) {
         )
     }
     return (
-    <div>
-      <h1>Bookmarks</h1>
+    <div className={styles.bookmarkcont}>
+      <h1 className={styles.heading}>Bookmarked</h1>
       {data.map((user,key)=>{
         return(
             <>
             
-              <Link to="/userBookmarks" state={user}  key={user._id}>{user.ProjectName}</Link>
+              <Link className={styles.bookmarked} to="/userBookmarks" state={user}  key={user._id}>{user.ProjectName}</Link>
            
             </>
         )

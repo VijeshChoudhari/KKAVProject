@@ -57,7 +57,7 @@ function Homepage() {
  
   return (
     <>
-    <div>
+    <div className={styles.contmain}>
     <div className={styles.cont}>
       <p className={styles.heading}>Search your interest from here.</p>
      
@@ -70,8 +70,7 @@ function Homepage() {
     <NavLink to="/projects">Projects</NavLink><br/>
     <NavLink to="/externalProfile">Profile</NavLink>
     </div>
-    <br/>
-    <br/>
+    
     <Bookmarks/>
     </div>
     </>

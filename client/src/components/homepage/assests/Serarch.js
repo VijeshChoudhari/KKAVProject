@@ -1,5 +1,6 @@
 import React,{useState,useEffect}from 'react'
 import {Link} from 'react-router-dom'
+import styles from '../../homepage/Homepage.module.css'
 function Serarch() {
 
 const [project,setProject]=useState()
@@ -99,11 +100,11 @@ const [searchFilter,setSearchFilter]=useState('')
 }
     
   return (
-    <div>
-       <input type="text" placeholder='Search' value={text} onChange={(e)=>onChangeHandler(e.target.value)} />
+    <div className={styles.inputdiv}>
+       <input type="text" className={styles.searchinp} placeholder='Search' value={text} onChange={(e)=>onChangeHandler(e.target.value)} />
    
     
-    {data?  searchFilter==="Project"? <Link to="/externalProject" state={data}>Go to</Link>:<Link to="/externalUser" state={data}>Go to</Link>:<button onClick={onpoplateHandler}>Search</button>}
+    {data?  searchFilter==="Project"? <Link className={styles.searchbutton} to="/externalProject" state={data}>Go to</Link>:<Link className={styles.searchbutton} to="/externalUser" state={data}>Go to</Link>:<button className={styles.searchbutton} onClick={onpoplateHandler}><div className={styles.circle}></div></button>}
     
 <br/>
     <input type="radio" id="html" name="search" value="Profile" onChange={(e)=>setSearchFilter(e.target.value)}/>

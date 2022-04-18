@@ -1,0 +1,18 @@
+.bookmarkcont{
+    margin: 0rem 2rem;
+   width: 20%;
+}
+.heading{
+    margin: 0rem 0rem;
+    margin-bottom: 1.2rem;
+}
+.bookmarked{
+    display: block;
+    background-color:  #45474E;
+    font-size: 18px;
+    width: 18rem;
+    padding: 0.7rem 1rem;
+    text-decoration: none;
+    border-radius: 7px;
+    margin-bottom: 0.8rem;
+}
