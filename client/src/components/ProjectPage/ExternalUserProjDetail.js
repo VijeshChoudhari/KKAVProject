@@ -18,6 +18,7 @@ const [status,setStatus]=useState(false)
 const [reload,setReload]=useState(false)
 const [user,setUser]=useState(false)
 const[isLoading,setIsLoading]=useState(true)
+const[postLength,setPostlength]=useState(0)
 const checkBookmark=async()=>{
   try{
     await fetch('/projects/id',{
@@ -70,6 +71,7 @@ const checkBookmark=async()=>{
        })
   }).then(data=>data.json())
   .then(json=>{
+    setPostlength(postLength+1)
     
     setReload(true)
     
@@ -107,7 +109,7 @@ const checkBookmark=async()=>{
     
     
 
-   <Bookmarks/>
+   <Bookmarks value={postLength}/>
     <br />
     <br />
     {/* Searching */}

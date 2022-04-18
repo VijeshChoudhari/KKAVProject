@@ -8,7 +8,7 @@ function BookmarkView() {
     const[project,setProject]=useState()
     const[loading,setLoading]=useState(true)
    const[stack,setStack]=useState()
-   
+
    
     const getProject=async()=>{
       try{
@@ -23,6 +23,7 @@ function BookmarkView() {
           })
         }).then(res=>res.json())
         .then(json=>{
+          
           if(json){
             setProject(json)
             //console.log(json)
@@ -37,7 +38,7 @@ function BookmarkView() {
     }
     useEffect(()=>{
       getProject()
-    })
+    },[0])
 
     const removeProject=async()=>{
       

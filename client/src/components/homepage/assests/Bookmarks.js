@@ -1,12 +1,14 @@
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
-function Bookmarks() {
+function Bookmarks(props) {
+  const postLength=props.value
     const [data,setData]=useState({})
     const [isLoading,setIsLoading]=useState(true)
     
+    
     const getBookmarks=async()=>{
-      let isMounted = true
+      
         try{
             await fetch('/projects/getBookmarks',{
               method:"GET",
@@ -17,15 +19,8 @@ function Bookmarks() {
              
           }).then(res=>res.json())
           .then(json=>{
-            if(json.message==="Empty"){
-            
+              setData(json)
               setIsLoading(false)
-
-            }else{
-              if(isMounted) setData(json)
-              setIsLoading(false)
-            }
-            isMounted=false    
           })
           }
           catch(err){
@@ -36,7 +31,7 @@ function Bookmarks() {
       
         getBookmarks() 
         
-    },[data])
+    },[postLength])
 
     
     if(isLoading){
