@@ -254,6 +254,7 @@ router.get('/getBookmarks',async(req,res)=>{
 
         const bookmarks=await UserBookmark.find()
         const userbookmark=bookmarks.filter(item=>item.Email===data.email)
+        
         res.status(200).send(userbookmark)
 
     }
