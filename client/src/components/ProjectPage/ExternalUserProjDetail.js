@@ -110,10 +110,7 @@ const checkBookmark=async()=>{
     
 
    <Bookmarks value={postLength}/>
-    <br />
-    <br />
-    {/* Searching */}
-    <Serarch/>
+    
     </div>
   )
 }

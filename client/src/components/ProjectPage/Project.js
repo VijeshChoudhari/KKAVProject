@@ -53,10 +53,7 @@ const[isLoading,setIsLoading]=useState(true)
     
     {/* BookMark */}
     <Bookmarks/>
-    <br />
-    <br />
-    {/* Searching */}
-    <Serarch/>
+    
   </>
     
   )

@@ -21,9 +21,7 @@ function UserProject() {
       }
       <a href={value.Github_Link} rel="noreferrer">{value.Github_Link}</a><br/>
       {value.About_Project}
-      <br/>
-      <br/>
-      <Serarch/>
+      
     </div>
   )
 }

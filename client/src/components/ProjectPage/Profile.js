@@ -47,10 +47,7 @@ function Profile() {
     
     {/* BookMark */}
     <Bookmarks/>
-    <br />
-    <br />
-    {/* Searching */}
-    <Serarch/> 
+    
   </>
     
   )

@@ -71,7 +71,7 @@ console.log(user)
         <div className={styles.bookmarkcont}>
         <Bookmarks/>
          <section className={styles.searchsec}>
-        <Serarch/>
+        
            </section> 
         </div>
         
