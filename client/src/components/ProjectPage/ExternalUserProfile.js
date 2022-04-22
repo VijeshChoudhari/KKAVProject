@@ -3,6 +3,9 @@ import {useLocation} from 'react-router-dom'
 import Bookmarks from '../homepage/assests/Bookmarks'
 import Serarch from '../homepage/assests/Serarch'
 import ExternalProject from './ExternalProject'
+import styles from './ExternalUserProfile.module.css'
+import gitpng from '../../png css/Octocat.png'
+import linkedpng from '../../png css/linked.png'
 function ExternalUserProfile() {
   const location=useLocation()
   const [project,setProject]=useState()
@@ -40,30 +43,38 @@ console.log(user)
     return(<>Loading</>)
   }
   return (
-    <div>
-      <h1>Profile</h1>
-      {value.name}<br/>
-     {value.role}<br/>
-     {value.profile}<br/>
+    <div className={styles.profilecont}>
+      <div className={styles.profilesec}>
+
+      <div className={styles.userinfo}>
+      <h5 className={styles.username}>{value.name}
+      <a className={styles.gitlink} href={value.social1Link}><img src={gitpng}></img>Github Link</a></h5><br/>
+     {value.role}/
+     {value.profile}
+     <a className={styles.linkedlink} href={value.social2Link}><img src={linkedpng}></img>Linkedin Link</a><br/>
      {value.place}<br/>
-     <a href={value.social1Link}>{value.social1Link}</a><br/>
-     <a href={value.social2Link}>{value.social2Link}</a>
-    <h1>Projects</h1>
+     </div>
+    <div className={styles.userproject}>
+
     {
-          project.map((data1,key)=>{
-            
-            return(
-            
-              <ExternalProject project={data1} key={data1.id}/>
-            )
-          })
-        }
-        <br/>
-        <br />
+      project.map((data1,key)=>{
+        
+        return(
+          
+          <ExternalProject project={data1} key={data1.id}/>
+          )
+        })
+      }
+      </div>
+        
+        </div>
+        <div className={styles.bookmarkcont}>
         <Bookmarks/>
-        <br />
-        <br />
+         <section className={styles.searchsec}>
         <Serarch/>
+           </section> 
+        </div>
+        
     </div>
     
   )

@@ -1,6 +1,7 @@
 import React,{useState,useEffect}from 'react'
 import {Link} from 'react-router-dom'
-import styles from '../../homepage/Homepage.module.css'
+import styles from '../Homepage.module.css'
+import searchpng from '../../../png css/Search.png'
 function Serarch() {
 
 const [project,setProject]=useState()
@@ -104,20 +105,21 @@ const [searchFilter,setSearchFilter]=useState('')
        <input type="text" className={styles.searchinp} placeholder='Search' value={text} onChange={(e)=>onChangeHandler(e.target.value)} />
    
     
-    {data?  searchFilter==="Project"? <Link className={styles.searchbutton} to="/externalProject" state={data}>Go to</Link>:<Link className={styles.searchbutton} to="/externalUser" state={data}>Go to</Link>:<button className={styles.searchbutton} onClick={onpoplateHandler}><div className={styles.circle}></div></button>}
+    {data?  searchFilter==="Project"? <Link className={styles.searchbutton} to="/externalProject" state={data}>Go to</Link>:<Link className={styles.searchbutton} to="/externalUser" state={data}>Go to</Link>:<button className={styles.searchbutton} onClick={onpoplateHandler}><img className={styles.searchpng} src={searchpng}></img></button>}
     
 <br/>
-    <input type="radio" id="html" name="search" value="Profile" onChange={(e)=>setSearchFilter(e.target.value)}/>
-    <label htmlFor="student">Profile</label>
+    <input className={styles.profilerad} type="radio" id="html" name="search" value="Profile" onChange={(e)=>setSearchFilter(e.target.value)}/>
+    <label className={styles.profilelab} htmlFor="student">Profile</label>
     <input type="radio" id="html" name="search" value="Project"  onChange={(e)=>setSearchFilter(e.target.value)}/>
-    <label htmlFor="student">project</label>
+    <label className={styles.projectlab} htmlFor="student">project</label>
 <br />
-
+    <div className={styles.suggestcont}>
     {searchFilter==="Project"?suggestions && suggestions.map((suggestion,i)=>
-      <div onClick={()=>onSuggestHandler(suggestion.Project_Name)}key={i}>{suggestion.Project_Name}</div>                                
+      <div className={styles.suggest} onClick={()=>onSuggestHandler(suggestion.Project_Name)}key={i}>{suggestion.Project_Name}</div>                                
     ):suggestions && suggestions.map((suggestion,i)=>
-    <div onClick={()=>onSuggestHandler(suggestion.name)} key={i}>{suggestion.name}</div>                                
+    <div className={styles.suggest} onClick={()=>onSuggestHandler(suggestion.name)} key={i}>{suggestion.name}</div>                                
   ) }
+  </div>
     </div>
   )
 }

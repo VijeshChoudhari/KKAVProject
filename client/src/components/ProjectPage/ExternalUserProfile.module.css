@@ -1,0 +1,79 @@
+.profilecont{
+    display: flex;
+}
+.bookmarkcont{
+    width: 25%;
+}
+.profilesec{
+    margin-left: 3rem;
+    height: 41rem;
+    width: 70rem;
+    background-color: #1f2735;
+    border: 0.1rem solid rgb(47, 46, 46);
+}
+.userinfo{
+    background-color: #1f2735;
+    padding: 3rem 10rem;
+}
+.username{
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin: 0rem 0rem;
+    background-color: #1f2735;
+}
+.gitlink{
+    vertical-align: middle;
+    display: inline-block;
+    width: 13rem;
+    padding: 0.3rem 1rem;
+    border-radius: 6px;
+    background-color: black;
+    margin: 0rem 3rem;
+    font-size: medium;
+    font-weight: 400;
+    text-decoration: none;
+}
+.gitlink >img{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    background-color: black;
+}
+.linkedlink{
+    vertical-align: middle;
+    display: inline-block;
+    width: 13rem;
+    padding: 0.3rem 1rem;
+    border-radius: 6px;
+    background-color: #0085FF;
+    margin-left: 10.6rem ;
+    font-size: medium;
+    text-decoration: none;
+}
+.linkedlink > img{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    background-color:#0085FF;
+}
+
+.userproject{
+    margin-top: 2rem;
+    background-color: #1f2735;
+    display: flex;
+}
+.userprojectlink{
+    display: inline-block;
+    padding: 0.8rem 0.8rem;
+    border-radius: 8px;
+    height: 150px;
+    width: 150px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    margin: 0rem 1rem;
+}
+.searchsec{
+    width: 100%;
+}

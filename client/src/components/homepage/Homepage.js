@@ -1,6 +1,6 @@
 import {React,useEffect, useState,useContext}from 'react'
 import { useNavigate,NavLink } from 'react-router-dom';
-import search from './css material/search.png'
+
 import styles from'./Homepage.module.css'
 
 import {UserContext} from "../../App"
@@ -66,12 +66,16 @@ function Homepage() {
     <Serarch/>
     
     <br/>
-    
-    <NavLink to="/projects">Projects</NavLink><br/>
-    <NavLink to="/externalProfile">Profile</NavLink>
     </div>
-    
+    <div>
+      
     <Bookmarks/>
+    <div className={styles.linkcont}>
+
+    <NavLink className={styles.projectlink + ' ' + styles.link} to="/projects">Projects</NavLink>
+    <NavLink className={styles.profilelink+ ' '+ styles.link} to="/externalProfile">Profile</NavLink>
+    </div>
+    </div>
     </div>
     </>
   )

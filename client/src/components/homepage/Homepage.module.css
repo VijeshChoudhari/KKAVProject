@@ -5,7 +5,7 @@
 
 .cont{
     margin-left: 3rem;
-    height: 38rem;
+    height: 41rem;
     width: 70rem;
     background-color: #1f2735;
     border: 0.1rem solid rgb(47, 46, 46);
@@ -25,6 +25,7 @@
 }
 .inputdiv{
     background-color: #1f2735;
+    
 }
 .searchinp{
     color:#1f2735;
@@ -33,45 +34,75 @@
     font-size: 27px;
     border-style: none;
     margin-left: 21rem;
+    margin-bottom: 1rem;
     padding: 0.7rem 1rem;
-    width: 20rem;
+    width: 13.8rem;
     border-radius: 2px;
 }
 .searchbutton{
-    position:absolute;
+    text-decoration: none;
     margin-top: 2.5rem;
     border-style: none;
     font-size: 30px;
     border-radius: 5px;
-    padding: 0.55rem 1rem;
+    padding: 0.5rem 0.8rem;
     margin-left: 1rem;
     background-color: #FF8A00;
-    width: 4.5rem;
-    height: 3.5rem;
-    
+    width: 5rem;
+    height: 3.5rem; 
 }
-.circle{
-    font-size: 10em;
-    background-color:#FF8A00;
-    margin-left: -0.2rem;
+.searchpng{
+    margin-top: -0.3rem;
     display: inline-block;
-    width: 1.8rem;
-    box-sizing: content-box;
-    height: 1.8rem;
-    border: 3.5px solid rgb(255, 255, 255);
-    position: relative;
-    border-radius: 0.35em;
-    z-index: 1;
-  }
-  .circle:before {
-   
-    margin-top: 1.7rem;
-    content: "";
-    display: inline-block;
-    position: absolute;
-    border: 1.5px solid white ;
-    background: rgb(255, 255, 255);
-    width: 1.5rem;
-    transform: rotate(45deg);
-    z-index: -5;
-  }
+    vertical-align: middle;
+    background-color: #FF8A00;
+}
+
+.profilelab{
+    margin-right: 4rem;
+    background-color: #1f2735;
+    font-size: 20px;
+}
+.profilerad{
+    margin-left: 23rem;
+    align-items: center;
+}
+.projectlab{
+    font-size: 20px;
+    background-color: #1f2735;
+}
+.suggestcont{
+    border: 1px #1f2735 ;
+    margin-left: 18rem;
+    margin-right: 16rem;
+    border-radius: 10px;
+}
+.suggest{
+    padding: 0.2rem 1rem;
+    background-color: #283243;
+    
+    color: rgb(255, 255, 255);
+}
+
+.linkcont{
+    margin-top: 2rem;
+    margin: 0rem 1rem;
+}
+.link{
+    
+    background-color: #0094FF;
+    padding: 0.7rem 3rem;
+    
+    width: 8rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    border-style: none;
+    border-style: none;
+    text-decoration: none;
+    margin: 1.2rem 1rem;
+}
+.profilelink{   
+    margin-left: 0.4rem;
+    padding: 0.7rem 3rem;
+
+}
