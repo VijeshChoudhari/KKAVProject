@@ -67,8 +67,6 @@ function Profiles() {
     
     {/* BookMark */}
     <Bookmarks/>
-    
-     
       </>
     )
   
