@@ -1,3 +1,7 @@
+.blockarea{
+    display: flex;
+    flex-direction: row;
+}
 .Navbar{
     
     padding: 1.2rem 0rem;
@@ -7,6 +11,7 @@
 .a{
     font-size: 24px;
     padding: 0rem 2rem;
+    
     opacity: 0.7;
     color:white;
     text-decoration: none;
@@ -21,4 +26,11 @@
 }
 a:hover{
     opacity: 1;
+}
+.image{
+    padding: 1.2rem 2rem;
+    
+    width: 35px;
+    position:relative;
+    
 }
