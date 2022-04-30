@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './css/Addproject.module.css'
+import Bookmarks from '../homepage/assests/Bookmarks';
 function AddUserProject() {
     const navigate=useNavigate();
     const [project_name,setName]=useState('')
@@ -37,10 +38,10 @@ function AddUserProject() {
     const onKeyUp = () => {
         setIsKeyReleased(true);
       }
-
       const deleteTag = (index) => {
         setStack(prevState => prevState.filter((tag, i) => i !== index))
       }
+      
       const submitData=async (e)=>{
         e.preventDefault();
         const res=await fetch("/projects/add",{
@@ -64,68 +65,95 @@ function AddUserProject() {
       }
   return (
     <>
-    <div>
-      <form method='POST'>
+    <div className={styles.block}>
+      <form className={styles.Section} method='POST'>
 
         <div className={styles.addData}>
+          <div className={styles.inputdata}>
+            <label 
+          htmlFor="projectName">Name of the Project
+          </label>
+
+          <input type="text"
+          id='projectName'
+          value={project_name} 
+          placeholder='Enter project name' 
+          onChange={e=>setName(e.target.value)}/>
+
+          </div>
+        
+          <div className={styles.inputdata}>
         <label 
-        htmlFor="projectName">Name
-        </label>
+          htmlFor="stack">Tech Stack
+          </label>
+          <div className={styles.techStack}>
+          
+          {
+            tech_stack.length>3?<input type="text" 
+            id='stack'
+            value={input} 
+            placeholder='Stack is full' 
+            onKeyDown={onKeyDown}  
+            onKeyUp={onKeyUp} 
+            onChange={handleChange}
+             className={styles.techStackValue}
+             disabled={true}
+            
+             />:
+             <input type="text" 
+             id='stack'
+             value={input} 
+             placeholder='Add tags' 
+             onKeyDown={onKeyDown}  
+             onKeyUp={onKeyUp} 
+             onChange={handleChange}
+              className={styles.techStackValue}
+              />
+          }
+          
+           <div className={styles.techStackData}>
+           {tech_stack.map((tag,index)=><div className={styles.techStores} key={tag.id}>{tag}
+           <button onClick={() => deleteTag(index)}>x</button>
+          </div>)}
+           </div>
+           
+          </div>
+          </div>
+          
 
-        <input type="text"
-        id='projectName'
-        value={project_name} 
-        placeholder='Enter project name' 
-        onChange={e=>setName(e.target.value)}/>
-
-
-        
-        <label 
-        htmlFor="stack">Stack
-        </label>
-        
-        {tech_stack.map((tag,index)=><div key={tag.id}>{tag}
-          <button onClick={() => deleteTag(index)}>cancel</button>
-        </div>)}
-
-      
-        
-        <input type="text" 
-        id='stack'
-        value={input} 
-        placeholder='Add tags' 
-        onKeyDown={onKeyDown}  
-        onKeyUp={onKeyUp} 
-        onChange={handleChange} />
-        
-        
-        <label 
+          <div className={styles.inputdata}>
+       <label 
         htmlFor="link">link
         </label>
 
-        <input type="text" 
+        <input type="text"
+        
         id='link'
         value={github_link} 
         placeholder='Enter Project Link' 
         onChange={e=>setLink(e.target.value)}/>
-        
-        
-        <label 
-        htmlFor="about">About
-        </label>
-        
-        <input type="text" 
-        id='about'
-        value={about_project} 
-        placeholder='Start Typing here' 
-        onChange={e=>setAbout(e.target.value)}/>
+          </div>
+
+          <div className={styles.inputdata}>
+          <label 
+            htmlFor="about">About
+            </label>
+           <div className={styles.about} >
+            <input type="text" 
+            
+            id='about'
+            value={about_project} 
+            placeholder='Start Typing here' 
+            onChange={e=>setAbout(e.target.value)}/>
+             </div> 
+          </div>
 
         </div>
         
-      <input type="submit" onClick={submitData}/>
+        <input className={styles.button} type="submit" onClick={submitData}/>
         
     </form>
-    
+    <Bookmarks/>
 
     </div>
 

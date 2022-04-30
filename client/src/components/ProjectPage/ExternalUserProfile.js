@@ -3,9 +3,10 @@ import {useLocation} from 'react-router-dom'
 import Bookmarks from '../homepage/assests/Bookmarks'
 import Serarch from '../homepage/assests/Serarch'
 import ExternalProject from './ExternalProject'
-import styles from './ExternalUserProfile.module.css'
-import gitpng from '../../png css/Octocat.png'
-import linkedpng from '../../png css/linked.png'
+import styles from './css/ExternalUserProfile.module.css'
+import gitimage from '../../png css/Octocat.png'
+import linkedimage from '../../png css/linked.png'
+
 function ExternalUserProfile() {
   const location=useLocation()
   const [project,setProject]=useState()
@@ -43,40 +44,37 @@ console.log(user)
     return(<>Loading</>)
   }
   return (
-    <div className={styles.profilecont}>
-      <div className={styles.profilesec}>
-
-      <div className={styles.userinfo}>
-      <h5 className={styles.username}>{value.name}
-      <a className={styles.gitlink} href={value.social1Link}><img src={gitpng}></img>Github Link</a></h5><br/>
-     {value.role}/
-     {value.profile}
-     <a className={styles.linkedlink} href={value.social2Link}><img src={linkedpng}></img>Linkedin Link</a><br/>
-     {value.place}<br/>
-     </div>
-    <div className={styles.userproject}>
-
+    <><div className={styles.block}>
+     <div>
+     <div className={styles.userData}>
+          <div className={styles.Data}>
+          <p className={styles.userName}>{value.name}</p>
+          <p className={styles.profile}>{value.profile}</p>
+          <p className={styles.desc}>{value.role}</p>
+          <p className={styles.desc}>{value.place}</p>
+          </div>
+          <div className={styles.Links}> 
+            <a className={styles.gitLink} href={value.social1Link}><img  className= {styles.images} src={gitimage} alt="" />{value.social1Link}</a>
+            <a className={styles.LinkedIn} href={value.social2Link}><img className={styles.images} src={linkedimage} alt="" />{value.social2Link}</a>
+          </div>
+      </div>
+      <div className={styles.userProject}>
     {
       project.map((data1,key)=>{
-        
         return(
-          
           <ExternalProject project={data1} key={data1.id}/>
           )
         })
       }
       </div>
-        
-        </div>
-        <div className={styles.bookmarkcont}>
+     
+     </div> 
         <Bookmarks/>
-         <section className={styles.searchsec}>
-        
-           </section> 
-        </div>
-        
     </div>
-    
+        
+  
+    </>
+   
   )
 }
 

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {Navigate, useLocation, useNavigate} from'react-router-dom'
+import Bookmarks from '../homepage/assests/Bookmarks'
+import styles from './css/Bookmark.module.css'
+import gitimage from '../../png css/Octocat.png'
 function BookmarkView() {
   const navigate=useNavigate()
     const location=useLocation()
     const value=location.state
     const projectId=value.ProjectId
+
     const[project,setProject]=useState()
     const[loading,setLoading]=useState(true)
    const[stack,setStack]=useState()
@@ -71,23 +75,28 @@ function BookmarkView() {
     }
     return (
     <>
-    {project.Project_Name}<br/>
-      {project.Date_Of_Created}<br/>
-      <br />
-      {
-        stack.map((name,key)=>{
-          return(
-            <div key={key}>{name}</div>
-          )
-        })
-      }
-      <br />  
-      <a href={project.Github_Link} rel="noreferrer">{project.Github_Link}</a><br/>
-      {project.About_Project}
-      <br />
-    <br/>
-    <button onClick={removeProject}>Remove</button>
-    
+    <div className={styles.block}>
+      <div className={styles.ProjectName}>
+      <p className={styles.projectname}>{project.Project_Name}</p>
+      <p className={styles.teckstacks}>
+        {
+          stack.map((name,key)=>{
+            return(
+              <div className={styles.tech}  key={key}>{name}</div>
+            )
+          })
+        }
+      </p>
+      
+        <a className={styles.link} href={project.Github_Link} target="_blank" rel="noreferrer"><img  className= {styles.images} src={gitimage} alt="" />{project.Github_Link}</a>
+        <button className={styles.button} onClick={removeProject}>Remove</button>
+        
+        <p className={styles.about}> {project.About_Project}</p>
+        
+      
+      </div>
+    <Bookmarks/>
+    </div>
     </>
   )
 }

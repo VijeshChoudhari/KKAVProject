@@ -20,6 +20,7 @@ function Bookmarks(props) {
              
           }).then(res=>res.json())
           .then(json=>{
+            console.log(data)
               setData(json)
               setIsLoading(false)
           })
@@ -40,9 +41,17 @@ function Bookmarks(props) {
             <>isLoading</>
         )
     }
+    if(data.length===0){
+      return(
+        <div className={styles.bookmarkcont}>
+        <h1 className={styles.heading}>My Bookmark</h1>
+        <p className={styles.noData}>Empty</p>
+        </div>
+      )
+    }
     return (
     <div className={styles.bookmarkcont}>
-      <h1 className={styles.heading}>Bookmarked</h1>
+      <h1 className={styles.heading}>My Bookmark</h1>
       {data.map((user,key)=>{
         return(
             <>
@@ -51,7 +60,8 @@ function Bookmarks(props) {
            
             </>
         )
-    })}</div>
+      })}
+    </div>
   )
 }
 

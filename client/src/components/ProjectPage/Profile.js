@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useContext} from 'react'
 import {UserContext} from "../../App"
 import {Link} from "react-router-dom"
-import Serarch from '../homepage/assests/Serarch';
+import styles from './css/Profile.module.css'
 import Bookmarks from '../homepage/assests/Bookmarks';
 
 function Profile() {
@@ -38,16 +38,24 @@ function Profile() {
  
   return (
   <>
-    <h1>Profile</h1>
-    <div>{profile.map((data,key)=>{
-      return(<div><Link to="/externalUser"state={data} key={key}>{data.name}</Link></div>)
-    })}</div>
-    <br />
-    <br />
-    
-    {/* BookMark */}
+     <div className={styles.block}>
+    <div className={styles.profileNames}>
+      {profile.map((data,key)=>{
+        return(
+          <div className={styles.profiles}>
+             <p className={styles.names}>{data.name}</p> 
+            <Link to="/externalUser"
+              state={data} 
+              key={key}
+              className={styles.profile}>
+                View
+            </Link>
+          </div>)
+        })
+      }
+    </div>
     <Bookmarks/>
-    
+    </div>
   </>
     
   )

@@ -1,0 +1,42 @@
+.block{
+    display: flex;
+    flex-direction: row;
+}
+.projectNames{
+    display: flex;
+  flex-direction: column;
+    margin: auto 1rem auto 2.7rem;
+    width: 70rem;
+    background: #1F2735;
+    height: 37rem;
+    border-radius: 0.5rem;
+    overflow: auto;
+}
+.projects{
+background:#1a212d ;
+display: flex;
+justify-content: space-between;
+margin: 1rem;
+padding: 0.1rem 1rem;
+border-radius:0.5rem ;
+}
+.project{
+    margin: auto 1rem ;
+    background: none;
+    text-decoration: none;
+    background: #8BC0FF;
+    width: 5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem ;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.project:hover{
+    background: #0094FF;
+    transition: all 450ms;
+}
+.names{
+    background: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}

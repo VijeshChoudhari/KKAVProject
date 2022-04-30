@@ -62,7 +62,6 @@ function Homepage() {
         
       <Bookmarks/>
       <div className={styles.linkcont}>
-
       <NavLink className={styles.link} to="/projects">Projects</NavLink>
       <NavLink className={styles.link} to="/externalProfile">Profile</NavLink>
       </div>

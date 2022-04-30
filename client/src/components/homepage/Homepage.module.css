@@ -31,7 +31,7 @@
 
 .linkcont{
     margin-top: 2rem;
-    margin: 0rem 1rem;
+    margin: 0rem 2rem;
 }
 .link{
     
@@ -74,7 +74,7 @@
 .searchinp{
     padding: 1rem;
     width: 15rem;
-   background: #fff;
+   background: rgb(159, 167, 173);
    color: black;
    font-size: 1.1rem;
    border: none;
@@ -84,10 +84,11 @@
     outline: none;
 }
 ::placeholder{
-    color: black;
+    color: rgb(122, 126, 133);
     font-size:1.1rem;
     opacity: 0.7;
     font-weight: bold;
+        
 }
 
 .searchbutton{

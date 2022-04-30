@@ -54,6 +54,7 @@ function Profiles() {
         <div className={styles.userData}>
           <div className={styles.Data}>
           <p className={styles.userName}>{data.name}</p>
+          <p className={styles.profile}>{data.profile}</p>
           <p className={styles.desc}>{data.role}</p>
           <p className={styles.desc}>{data.place}</p>
           </div>
@@ -64,16 +65,14 @@ function Profiles() {
         </div>
       
       <div className={styles.userProject}>
-      
-      {
-        project.map((data1,key)=>{
-          return(
-            <UserProjects project={data1} key={data1.id}/>
-          )
-        })
-      }
-
-      <NavLink className={styles.addproject} to="/AddProject"><img src={addimage} alt="" /></NavLink>
+        {
+          project.map((data1,key)=>{
+            return(
+              <UserProjects project={data1} key={data1.id}/>
+            )
+          })
+        }
+        <NavLink className={styles.addproject} to="/AddProject"><img src={addimage} alt="" /></NavLink>
       </div>
         </div>
         {/* BookMark */}

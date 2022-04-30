@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from './ExternalUserProfile.module.css'
+import styles from './css/ExternalUserProfile.module.css'
 
 function ExternalProject(props) {
   const data=props.project
@@ -8,8 +8,11 @@ function ExternalProject(props) {
   if(data){
     return (
       <>
-      <div className={styles.userproject}>
-        <Link className={styles.userprojectlink} to="/externalProject" state={data}>{data.Project_Name}</Link>
+       <div className={styles.projects}>
+        <Link className={styles.project} to="/externalProject" state={data}>
+        <p className={styles.projectname}>{data.Project_Name}</p>
+        <p className={styles.projectabout}>{data.About_Project}</p>
+        </Link>
       </div>
       </>
      

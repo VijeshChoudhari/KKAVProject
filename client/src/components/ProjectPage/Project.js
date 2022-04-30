@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useContext} from 'react'
 import {UserContext} from "../../App"
 import {Link} from "react-router-dom"
-import Serarch from '../homepage/assests/Serarch';
+import styles from './css/Project.module.css'
 import Bookmarks from '../homepage/assests/Bookmarks';
 
 function Project() {
@@ -44,15 +44,32 @@ const[isLoading,setIsLoading]=useState(true)
 
   return (
   <>
-    <h1>Projects</h1>
-    <div>{project.map((data,key)=>{
-      return(<div><Link to="/externalProject"  state={data} key={key}>{data.Project_Name}</Link></div>)
-    })}</div>
-    <br />
-    <br />
+    <div className={styles.block}>
+    <div className={styles.projectNames}>
+      {project.map((data,key)=>{
+        return(
+          
+          <div className={styles.projects}>
+            <p className={styles.names}>{data.Project_Name}</p> 
+            <Link to="/externalProject" 
+              state={data} 
+              key={key}
+              className={styles.project}>
+              View
+            </Link>
+          </div>)
+        })
+      }
+    </div>
+
+    <Bookmarks/>
+
+    </div>
+    
+    
     
     {/* BookMark */}
-    <Bookmarks/>
+    
     
   </>
     

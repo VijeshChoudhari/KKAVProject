@@ -1,0 +1,70 @@
+.block{
+    display: flex;
+    flex-direction: row;
+}
+.ProjectName{
+    display: flex;
+  flex-direction: column;
+    margin: auto 1rem auto 2.7rem;
+    width: 70rem;
+    background: #1F2735;
+    height: 37rem;
+    border-radius: 0.5rem;
+}
+.projectname{
+    background: none;
+    font-size: 2.4rem;
+    margin: 1rem 1.4rem;
+}
+.teckstacks{
+   display: flex;
+   background: none;
+   margin: 0rem 1.4rem 1rem;
+}
+.tech{
+    background-color: #0094FF;
+    margin: 0.5rem;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+}
+.link{
+    display: flex;
+    width: 20rem;
+    text-decoration: none;
+    background: #000000;
+    padding:0.6rem 1rem 0.6rem 0.6rem;
+    border-radius: 1rem;
+    text-align: center;
+    margin: 0rem 1.4rem 1rem;
+}
+.link:hover{
+    background-color: #FF8A00;
+    transition: all 450ms;
+
+}
+.images{
+    background: none;
+}
+.about{
+    background: #8BC0FF;
+    padding: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 60rem;
+    margin: 0.4rem auto 1rem auto;
+    height: 20rem;
+}
+.button{
+    width: 10rem;
+    padding: 0.7rem;
+    border: none;
+    background-color: #0094FF;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    position:absolute;
+    margin: 5rem 0rem  0rem 55rem;
+}
+.button:hover{
+    background:#FF8A00;
+    transition: all 450ms;
+}
