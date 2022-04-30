@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Bookmark.module.css'
+import ReactLoading from "react-loading";
 
 function Bookmarks(props) {
   const postLength=props.value
@@ -37,10 +38,16 @@ function Bookmarks(props) {
 
     
     if(isLoading){
-        return(
-            <>isLoading</>
-        )
+      return(
+        <>
+        <div className={styles.loading}>
+          <ReactLoading type="spin" color="#fff" />
+          <h2>Fetching Data</h2>
+        </div>
+        </>
+      )
     }
+   
     if(data.length===0){
       return(
         <div className={styles.bookmarkcont}>

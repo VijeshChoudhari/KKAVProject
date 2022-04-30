@@ -4,8 +4,7 @@ import styles from './css/ExternalUserProfile.module.css'
 
 function ExternalProject(props) {
   const data=props.project
-  console.log("from userprojects",data)
-  if(data){
+
     return (
       <>
        <div className={styles.projects}>
@@ -17,11 +16,8 @@ function ExternalProject(props) {
       </>
      
     )
-  }
-  return (
-    <div>hello</div>
-   
-  )
+  
+  
 }
 
 export default ExternalProject

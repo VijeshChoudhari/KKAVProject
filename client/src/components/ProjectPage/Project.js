@@ -3,6 +3,7 @@ import {UserContext} from "../../App"
 import {Link} from "react-router-dom"
 import styles from './css/Project.module.css'
 import Bookmarks from '../homepage/assests/Bookmarks';
+import ReactLoading from 'react-loading'
 
 function Project() {
   const [project,setProject]=useState([])
@@ -36,16 +37,26 @@ const[isLoading,setIsLoading]=useState(true)
    
  fetchData();
  }, [])
+
  if(isLoading){
-   return(
-     <div>IsLoading</div>
-   )
- }
+  return(
+    <>
+    <div className={styles.loading}>
+      <ReactLoading type="spin" color="#fff" />
+      <h2>Fetching Data</h2>
+    </div>
+    </>
+  )
+}
+
 
   return (
   <>
     <div className={styles.block}>
-    <div className={styles.projectNames}>
+    {
+       
+        project.length===0? <div className={styles.noData}><p className={styles.noDataName}>No Data</p></div>:
+        <div className={styles.projectNames}>
       {project.map((data,key)=>{
         return(
           
@@ -61,6 +72,8 @@ const[isLoading,setIsLoading]=useState(true)
         })
       }
     </div>
+      }
+    
 
     <Bookmarks/>
 

@@ -29,3 +29,13 @@
     color: rgb(151, 151, 151);
     
 }
+.loading{
+    
+    margin: 15rem auto;
+    display: flex;
+    
+    justify-content: center;
+}
+.loading> h2{
+    margin-left: 1rem;
+}

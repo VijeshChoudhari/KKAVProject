@@ -1,19 +1,21 @@
 import React,{useState,useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 import Bookmarks from '../homepage/assests/Bookmarks'
-import Serarch from '../homepage/assests/Serarch'
+
 import ExternalProject from './ExternalProject'
 import styles from './css/ExternalUserProfile.module.css'
 import gitimage from '../../png css/Octocat.png'
 import linkedimage from '../../png css/linked.png'
+import ReactLoading from 'react-loading'
 
 function ExternalUserProfile() {
+
   const location=useLocation()
   const [project,setProject]=useState()
   const [isLoading,setIsLoading]=useState(true)
  const value=location.state
  const user=value.email
-console.log(user)
+
  const fetchProject=async ()=>{
   try{
     await fetch('/projects/externalProjects',{
@@ -40,9 +42,18 @@ console.log(user)
    fetchProject();
   
   }, [])
+
   if(isLoading){
-    return(<>Loading</>)
+    return(
+      <>
+      <div className={styles.loading}>
+        <ReactLoading type="spin" color="#fff" />
+        <h2>Fetching Data</h2>
+      </div>
+      </>
+    )
   }
+  
   return (
     <><div className={styles.block}>
      <div>
@@ -58,16 +69,20 @@ console.log(user)
             <a className={styles.LinkedIn} href={value.social2Link}><img className={styles.images} src={linkedimage} alt="" />{value.social2Link}</a>
           </div>
       </div>
-      <div className={styles.userProject}>
-    {
-      project.map((data1,key)=>{
-        return(
-          <ExternalProject project={data1} key={data1.id}/>
-          )
-        })
-      }
+      {project.length===0? <div className={styles.noData}><p className={styles.noDataName}>No Data</p></div>:
+
+      <div className={styles.userProject}>{
+        project.map((data1,key)=>{
+          return(
+            <ExternalProject project={data1} key={data1.id}/>
+            )
+          })
+        }
+      
+      
+      
       </div>
-     
+      }
      </div> 
         <Bookmarks/>
     </div>

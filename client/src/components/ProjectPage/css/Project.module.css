@@ -40,3 +40,33 @@ border-radius:0.5rem ;
     font-size: 1.5rem;
     font-weight: bold;
 }
+
+.loading{
+    
+    margin: 15rem auto;
+    display: flex;
+    
+    justify-content: center;
+}
+.loading> h2{
+    margin-left: 1rem;
+}
+.noData{
+    margin: auto 1rem auto 2.7rem;
+    width: 70rem;
+    background: #1F2735;
+    height: 37rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+.noDataName{
+    margin: auto 2rem;
+    font-size: 2.4rem;
+    width: 30rem;
+    background: none;
+    text-align: center;
+
+
+  
+}
