@@ -89,6 +89,7 @@ const checkBookmark=async()=>{
  
 
   return (
+    
     <div className=''>
       {value.Project_Name}<br/>
       {value.Date_Of_Created}<br/>
@@ -99,7 +100,7 @@ const checkBookmark=async()=>{
           )
         })
       }
-      <a href={value.Github_Link} rel="noreferrer">{value.Github_Link}</a><br/>
+      <a href={value.Github_Link} target="_blank" rel="noreferrer">{value.Github_Link}</a><br/>
       {value.About_Project}
       <br />
     <br />

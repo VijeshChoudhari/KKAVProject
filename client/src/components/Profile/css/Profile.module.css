@@ -1,0 +1,136 @@
+.block{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.userData{
+    display: flex;
+    justify-content: space-between;
+    margin: auto 1rem auto 2.7rem;
+    width: 70rem;
+    background: #1F2735;
+    height: 12rem;
+    border-radius: 0.5rem;
+}
+.Data{
+background: none;
+margin: auto;
+}
+.loading{
+    
+    margin: 15rem auto;
+    display: flex;
+    
+    justify-content: center;
+}
+.loading> h2{
+    margin-left: 1rem;
+}
+
+.userName{
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    background: none;
+}
+.desc{
+    font-size: 1.4rem;
+    margin: 0;
+    background: none;
+}
+.Links{
+    background: none;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    
+}
+.gitLink{
+    display: flex;
+    text-decoration: none;
+    background: black;
+    padding:0.6rem;
+    border-radius: 1rem;
+    text-align: center;
+
+    margin-bottom: 1rem;
+}
+.gitLink:hover{
+    background-color: #FF8A00;
+    transition: all 450ms;
+}
+.LinkedIn{
+    display: flex;
+    text-decoration: none;
+    background: #0094FF;
+    padding:0.6rem;
+    border-radius: 1rem;
+    text-align: center;
+
+}
+.LinkedIn:hover{
+    background-color: #FF8A00;
+    transition: all 450ms;
+}
+.images{
+margin-right: 1rem;
+background: none;
+
+}
+.userProject{
+    display: flex;
+    margin: 1rem 1rem auto 2.7rem;
+    width: 70rem;
+    background: #1F2735;
+    height: 25rem;
+    border-radius: 0.5rem;
+
+}
+.projects{
+   background: white;
+    margin: 1rem;
+    height: 15rem;
+    width: 13rem;
+    border-radius: 0.5rem;
+    
+
+}
+.project{
+    text-decoration: none;
+    
+
+}
+.projectname{
+    background: none;
+    color: black;
+    font-weight: bold;
+    margin: 1rem;
+
+}
+.projectabout{
+    background: #8BC0FF;
+    margin: 1rem;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: rgb(255, 255, 255);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+    
+}
+.addproject{
+    margin: 1rem;
+     width: 13rem;
+     background:#8BC0FF;
+     height: 15rem;
+     border-radius: 0.5rem;
+            
+}
+.addproject>img{
+    background: none;
+    margin: 4rem 3.5rem;
+
+}

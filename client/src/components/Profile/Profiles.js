@@ -1,10 +1,12 @@
 import {React,useEffect,useState} from 'react'
 import { NavLink } from 'react-router-dom';
 import Bookmarks from '../homepage/assests/Bookmarks';
-import Serarch from '../homepage/assests/Serarch';
+import ReactLoading from "react-loading";
 import UserProjects from './UserProjects';
-
-
+import styles from './css/Profile.module.css'
+import gitimage from'../../png css/Octocat.png'
+import linkedimage from '../../png css/linked.png'
+import addimage from '../../png css/Add.svg'
 //User Profile View
 function Profiles() {
    
@@ -37,36 +39,50 @@ function Profiles() {
       }
     }
     if(isLoading){
-      return<>is Loading</>;
+      return(
+        <>
+      <div className={styles.loading}>
+        <ReactLoading type="spin" color="#fff" />
+        <h2>Fetching Data</h2>
+      </div>
+      </>
+      )
     }
     return (
-      <>
-      <h1>About User</h1>
-      {data.name}<br/>
-      {data.role}<br/>
-      {data.place}<br/>
-  
-      <a href={data.social1Link}>{data.social1Link}</a><br/>
-      {data.social2Link}
-  
-      <h2>Project</h2>
+      <><div className={styles.block}>
+        <div>
+        <div className={styles.userData}>
+          <div className={styles.Data}>
+          <p className={styles.userName}>{data.name}</p>
+          <p className={styles.desc}>{data.role}</p>
+          <p className={styles.desc}>{data.place}</p>
+          </div>
+          <div className={styles.Links}> 
+            <a className={styles.gitLink} href={data.social1Link}><img  className= {styles.images} src={gitimage} alt="" />{data.social1Link}</a>
+            <a className={styles.LinkedIn} href={data.social2Link}><img className={styles.images} src={linkedimage} alt="" />{data.social2Link}</a>
+          </div>
+        </div>
+      
+      <div className={styles.userProject}>
+      
       {
-          project.map((data1,key)=>{
-            
-            return(
-            
-              <UserProjects project={data1} key={data1.id}/>
-            )
-          })
-        }
+        project.map((data1,key)=>{
+          return(
+            <UserProjects project={data1} key={data1.id}/>
+          )
+        })
+      }
+
+      <NavLink className={styles.addproject} to="/AddProject"><img src={addimage} alt="" /></NavLink>
+      </div>
+        </div>
+        {/* BookMark */}
+        <Bookmarks/>
+
+      </div>
        
-    <br/>
-    <NavLink to="/AddProject">Add Project</NavLink>
-    <br />
-    <br />
-    
-    {/* BookMark */}
-    <Bookmarks/>
+
+   
       </>
     )
   

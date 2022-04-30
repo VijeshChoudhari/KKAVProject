@@ -1,22 +1,17 @@
 import {React,useEffect, useState,useContext}from 'react'
 import { useNavigate,NavLink } from 'react-router-dom';
-
 import styles from'./Homepage.module.css'
-
 import {UserContext} from "../../App"
 import Serarch from './assests/Serarch';
 import Bookmarks from './assests/Bookmarks';
-function Homepage() {
+import ReactLoading from "react-loading";
 
+function Homepage() {
   const navigate=useNavigate()
   const [isLoading,setLoading]=useState(true)
-
   const {state,dispatch} =useContext(UserContext);
 
-
-
   const callHomePage=async ()=>{
-
     try{
       await fetch('/user',{
         method:"GET",
@@ -31,8 +26,6 @@ function Homepage() {
           dispatch({type:"USER",payload:true})
           setLoading(false)
       })
-     
-    
     }catch(err){
       dispatch({type:"USER",payload:false})
       console.log(err)
@@ -47,9 +40,9 @@ function Homepage() {
   if(isLoading){
     return(
       <>
-      <div>
-        
-      isLoading
+      <div className={styles.loading}>
+        <ReactLoading type="spin" color="#fff" />
+        <h2>Fetching Data</h2>
       </div>
       </>
     )
@@ -58,24 +51,22 @@ function Homepage() {
   return (
     <>
     <div className={styles.contmain}>
-    <div className={styles.cont}>
-      <p className={styles.heading}>Search your interest from here.</p>
-     
-      <p className={styles.para}>Search from 1000 of projects and implement it.</p>
+      <div className={styles.cont}>
+        <p className={styles.heading}>Search your interest from here.</p>
+        <p className={styles.para}>Search from 1000 of projects and implement it.</p>
+      <Serarch/>
       
-    <Serarch/>
-    
-    <br/>
-    </div>
-    <div>
-      
-    <Bookmarks/>
-    <div className={styles.linkcont}>
+      <br/>
+      </div>
+      <div>
+        
+      <Bookmarks/>
+      <div className={styles.linkcont}>
 
-    <NavLink className={styles.projectlink + ' ' + styles.link} to="/projects">Projects</NavLink>
-    <NavLink className={styles.profilelink+ ' '+ styles.link} to="/externalProfile">Profile</NavLink>
-    </div>
-    </div>
+      <NavLink className={styles.link} to="/projects">Projects</NavLink>
+      <NavLink className={styles.link} to="/externalProfile">Profile</NavLink>
+      </div>
+      </div>
     </div>
     </>
   )

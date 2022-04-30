@@ -5,11 +5,11 @@ import styles from './Welcomepage.module.css'
 function WelcomePage() {
   return (
     <>
-    <div>
-      <p className={styles.welcome}><b>Welcome!</b></p>
+    <div className={styles.block}>
+      <p className={styles.welcome}>Welcome!</p>
       <p className={styles.intro}>Create your own project portfolio <br></br>
       Explore others project</p>
-      <NavLink className={styles.join} to='/login'>Join Now.</NavLink>
+      <NavLink className={styles.join} to='/login'>Register Now</NavLink>
     </div>
     
     </>

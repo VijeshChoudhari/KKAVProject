@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import styles from './css/Addproject.module.css'
 function AddUserProject() {
     const navigate=useNavigate();
     const [project_name,setName]=useState('')
@@ -64,20 +64,72 @@ function AddUserProject() {
       }
   return (
     <>
-    <h1>Add Project</h1>
-    <form method='POST'>
-        <input type="text" value={project_name} placeholder='Enter project name' onChange={e=>setName(e.target.value)}/>
-    <br/>
-        {tech_stack.map((tag,index)=><div key={tag.id}>{tag} <button onClick={() => deleteTag(index)}>x</button></div>)}
-        <input type="text" value={input} placeholder='Add tags' onKeyDown={onKeyDown}  onKeyUp={onKeyUp} onChange={handleChange} />
-        <br/>
-        <input type="text" value={github_link} placeholder='Enter Project Link' onChange={e=>setLink(e.target.value)}/>
-        <br/>
-        <input type="text" value={about_project} placeholder='Start Typing here' onChange={e=>setAbout(e.target.value)}/>
-        <br/>
+    <div>
+      <form method='POST'>
+
+        <div className={styles.addData}>
+        <label 
+        htmlFor="projectName">Name
+        </label>
+
+        <input type="text"
+        id='projectName'
+        value={project_name} 
+        placeholder='Enter project name' 
+        onChange={e=>setName(e.target.value)}/>
+
+
+        
+        <label 
+        htmlFor="stack">Stack
+        </label>
+        
+        {tech_stack.map((tag,index)=><div key={tag.id}>{tag}
+          <button onClick={() => deleteTag(index)}>cancel</button>
+        </div>)}
+
+      
+        
+        <input type="text" 
+        id='stack'
+        value={input} 
+        placeholder='Add tags' 
+        onKeyDown={onKeyDown}  
+        onKeyUp={onKeyUp} 
+        onChange={handleChange} />
+        
+        
+        <label 
+        htmlFor="link">link
+        </label>
+
+        <input type="text" 
+        id='link'
+        value={github_link} 
+        placeholder='Enter Project Link' 
+        onChange={e=>setLink(e.target.value)}/>
+        
+        
+        <label 
+        htmlFor="about">About
+        </label>
+        
+        <input type="text" 
+        id='about'
+        value={about_project} 
+        placeholder='Start Typing here' 
+        onChange={e=>setAbout(e.target.value)}/>
+
+        </div>
+        
       <input type="submit" onClick={submitData}/>
         
     </form>
+    
+
+    </div>
+
+      
     </>
   )
 }

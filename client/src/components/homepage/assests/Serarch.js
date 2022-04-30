@@ -1,13 +1,13 @@
 import React,{useState,useEffect}from 'react'
 import {Link} from 'react-router-dom'
 import styles from '../Homepage.module.css'
-import searchpng from '../../../png css/Search.png'
+
 function Serarch() {
 
 const [project,setProject]=useState()
 const [profile,setProfile]=useState()
 
-const [searchFilter,setSearchFilter]=useState('')
+const [searchFilter,setSearchFilter]=useState('Profile')
 
   const [text,setText]=useState('')
   const [suggestions, setSuggestions] = useState([]);
@@ -102,24 +102,41 @@ const [searchFilter,setSearchFilter]=useState('')
     
   return (
     <div className={styles.inputdiv}>
-       <input type="text" className={styles.searchinp} placeholder='Search' value={text} onChange={(e)=>onChangeHandler(e.target.value)} />
-   
+      <div className={styles.SearchButton}>
+      <input type="text" className={styles.searchinp} placeholder='Search' value={text} onChange={(e)=>onChangeHandler(e.target.value)} />
+      {
+        data?  searchFilter==="Project"? 
+          <Link className={styles.searchbutton} to="/externalProject" state={data}>Go</Link>:
+          <Link className={styles.searchbutton} to="/externalUser" state={data}>Go</Link>:
+          <button className={styles.searchbutton} onClick={onpoplateHandler}>
+            Search
+          </button>
+      }
     
-    {data?  searchFilter==="Project"? <Link className={styles.searchbutton} to="/externalProject" state={data}>Go to</Link>:<Link className={styles.searchbutton} to="/externalUser" state={data}>Go to</Link>:<button className={styles.searchbutton} onClick={onpoplateHandler}><img className={styles.searchpng} src={searchpng}></img></button>}
+      </div>
+
+      {/* Selection */}
+      
+      <div className={styles.selection}>
+        <input  type="radio"  defaultChecked id="profile" name="search" value="Profile" onChange={(e)=>setSearchFilter(e.target.value)}/>
+        <label htmlFor="profile">Profile</label>
+        <input type="radio" id="project" name="search" value="Project"  onChange={(e)=>setSearchFilter(e.target.value)}/>
+        <label htmlFor="project">Project</label>
+      </div>
     
-<br/>
-    <input className={styles.profilerad} type="radio" id="html" name="search" value="Profile" onChange={(e)=>setSearchFilter(e.target.value)}/>
-    <label className={styles.profilelab} htmlFor="student">Profile</label>
-    <input type="radio" id="html" name="search" value="Project"  onChange={(e)=>setSearchFilter(e.target.value)}/>
-    <label className={styles.projectlab} htmlFor="student">project</label>
-<br />
-    <div className={styles.suggestcont}>
-    {searchFilter==="Project"?suggestions && suggestions.map((suggestion,i)=>
-      <div className={styles.suggest} onClick={()=>onSuggestHandler(suggestion.Project_Name)}key={i}>{suggestion.Project_Name}</div>                                
-    ):suggestions && suggestions.map((suggestion,i)=>
-    <div className={styles.suggest} onClick={()=>onSuggestHandler(suggestion.name)} key={i}>{suggestion.name}</div>                                
-  ) }
-  </div>
+      {/* Suggestion */}
+    
+      <div className={styles.suggestcont}>
+        { 
+          searchFilter==="Project"?
+            suggestions && suggestions.map((suggestion,i)=>
+              <div className={styles.suggest} onClick={()=>onSuggestHandler(suggestion.Project_Name)}key={i}>{suggestion.Project_Name}</div>                                
+            ):
+            suggestions && suggestions.map((suggestion,i)=>
+              <div className={styles.suggest} onClick={()=>onSuggestHandler(suggestion.name)} key={i}>{suggestion.name}</div>                                
+            ) 
+        }
+      </div>
     </div>
   )
 }
