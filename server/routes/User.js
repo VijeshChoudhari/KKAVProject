@@ -13,17 +13,17 @@ Router.post('/login' , async(req,res)=>{
 
     //Validation for Login
     const {error} = LoginValidation(req.body)
-    if (error) return res.status(400).send(error.details[0].message)
+    if (error) return res.status(401).send({message:"Not Valid"})
 
     const user = await Signup.findOne({email : req.body.email})
 
     //Checking email and password is correct or not
     if(!user){
-        res.status(400).send({message : "Entered incorrect email or password"})
+        res.status(403).send({message : "Incorrect Email"})
     }
     else {
         if(! await bcrypt.compare(req.body.password , user.password)){
-            res.status(400).send({message : "Entered incorrect email or password !"})
+            res.status(403).send({message : "Incorrect Password"})
         }
 
         //Creating token for a particular user

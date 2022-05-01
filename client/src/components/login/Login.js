@@ -4,7 +4,7 @@ import {UserContext} from "../../App"
 import styles from './Login.module.css'
 import loginImage from '../../images/young man practicing meditation.svg'
 function Login() {
-  const[cookie,setCookie]=useState('')
+ 
   const {state,dispatch} =useContext(UserContext);
 
 
@@ -37,8 +37,8 @@ function Login() {
   
   const loginUser= async (e)=>{
     e.preventDefault();
-  
-   await fetch('/user/login',{
+  try{
+    await fetch('/user/login',{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -46,14 +46,30 @@ function Login() {
       body:JSON.stringify({
         email,password
       }) 
-    }).then(res=>res.json())
-    .then(()=>{
+    }).then(res=>{
+     if(res.status===403){
+       if(res.message==="Incorrect Password"){
+         alert("Password Not Matched")
+         window.location.reload();
+       }
+       else{
+         alert("Email Not Matched")
+         window.location.reload();
+       }
+     }
+     else if(res.status===401){
+       alert("Enter Proper Email or Password")
+       window.location.reload();
+     }
+     else if(res.status===200){
       dispatch({type:"USER",payload:true})
-     
-     
-      console.log("Login Successful")
       checkDataEntry()
+     }
     })
+  }catch(err){
+    console.log(err)
+  }
+   
  
   }
     

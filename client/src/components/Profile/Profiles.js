@@ -1,4 +1,4 @@
-import {React,useEffect,useState} from 'react'
+import {React,useEffect,useState,useContext} from 'react'
 import { NavLink } from 'react-router-dom';
 import Bookmarks from '../homepage/assests/Bookmarks';
 import ReactLoading from "react-loading";
@@ -7,12 +7,15 @@ import styles from './css/Profile.module.css'
 import gitimage from'../../png css/Octocat.png'
 import linkedimage from '../../png css/linked.png'
 import addimage from '../../png css/Add.svg'
+import {UserContext} from "../../App"
 //User Profile View
 function Profiles() {
+  const {state,dispatch} =useContext(UserContext);
    
     const [data,setData]=useState({})
     const [project,setProject]=useState({})
     const [isLoading,setLoading]=useState(true)
+   
     useEffect(() => {
            
             callProject();
@@ -48,6 +51,7 @@ function Profiles() {
       </>
       )
     }
+    dispatch({type:"USER",payload:true})
     return (
       <><div className={styles.block}>
         <div>
@@ -59,8 +63,8 @@ function Profiles() {
           <p className={styles.desc}>{data.place}</p>
           </div>
           <div className={styles.Links}> 
-            <a className={styles.gitLink} href={data.social1Link}><img  className= {styles.images} src={gitimage} alt="" />{data.social1Link}</a>
-            <a className={styles.LinkedIn} href={data.social2Link}><img className={styles.images} src={linkedimage} alt="" />{data.social2Link}</a>
+            <a className={styles.gitLink} href={data.social1Link} target="_blank" rel="noreferrer"><img  className= {styles.images} src={gitimage} alt="" />{data.social1Link}</a>
+            <a className={styles.LinkedIn} href={data.social2Link} target="_blank" rel="noreferrer"><img className={styles.images} src={linkedimage} alt="" />{data.social2Link}</a>
           </div>
         </div>
       

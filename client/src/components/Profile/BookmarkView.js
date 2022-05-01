@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import {Navigate, useLocation, useNavigate} from'react-router-dom'
 import Bookmarks from '../homepage/assests/Bookmarks'
 import styles from './css/Bookmark.module.css'
 import gitimage from '../../png css/Octocat.png'
+import {UserContext} from "../../App"
+
+
+
 function BookmarkView() {
+  const {state,dispatch} =useContext(UserContext);
   const navigate=useNavigate()
     const location=useLocation()
     const value=location.state
@@ -30,6 +35,7 @@ function BookmarkView() {
           
           if(json){
             setProject(json)
+            dispatch({type:"USER",payload:true})
             //console.log(json)
             setStack(json.Tech_Stack)
             setLoading(false)

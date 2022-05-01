@@ -17,31 +17,40 @@ const handleInputs=(e)=>{
   setUser({...user,[name]:value})
 }
 
-const PostData=async (e)=>{
-  e.preventDefault(); //prevent from default enter
-  const {email,password}=user; //destructuring 
-  
-const res=await fetch("/signup/register",{
-  method:"POST",
-  headers:{
-    "Content-Type":"application/json"
-  },
-  //servr doesnt understand json
-  body:JSON.stringify({
-   email,password
-  })
-})
-const data=await res.json()
-  if(res.status===422 || !data){
-    window.alert("Invalid Registration")
-    console.log("Invalid Registration")
-  }else{
+  const PostData=async (e)=>{
+    e.preventDefault(); //prevent from default enter
+    const {email,password}=user; //destructuring 
     
-    window.alert("Registration Successful")
-    console.log("Registration Successful")
-    navigate("/login")
-  }
-} 
+    try{
+      await fetch("/signup/register",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        //servr doesnt understand json
+        body:JSON.stringify({
+        email,password
+        })
+      }).then(res=>{
+        if(res.status===200){
+          res=res.json()
+          navigate("/login")
+        }
+        else if(res.status===401){
+          alert("Enter valid Email or Password")
+          window.location.reload();
+        }
+        else if(res.status===409){
+          alert("Email already exists")
+          window.location.reload();
+        }
+      })
+      
+
+    }catch(err){
+      console.log(err)
+    }
+  } 
 
   return (
     <>
