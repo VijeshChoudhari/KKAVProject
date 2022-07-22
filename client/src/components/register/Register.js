@@ -1,4 +1,4 @@
-import{React,useState,useContext} from 'react'
+import{React,useState} from 'react'
 import {NavLink,useNavigate} from 'react-router-dom'
 import styles from './Register.module.css'
 import singUpImage from '../../images/Signup.svg' 
@@ -63,8 +63,9 @@ const handleInputs=(e)=>{
           <input className={styles.input} type="email" placeholder='Enter your Email' name="email" id="email" value={user.name} onChange={handleInputs}/>
           <input className={styles.input} type="password" placeholder='Password'  name="password" id="password" value={user.password} onChange={handleInputs} />
           <div  className={styles.button}>
-            <NavLink className={styles.login} to="/login">Log In</NavLink> 
+
             <input className={styles.register} type="submit" name="signup" value="Register"  onClick={PostData} id="signup" />
+            <NavLink className={styles.login} to="/login">Log In</NavLink> 
           </div>
         </form>  
       </div>

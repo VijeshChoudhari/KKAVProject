@@ -2,8 +2,8 @@
 .block{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-top: 2rem;
+    
+    margin-top: 2rem;   
 }
 .innerBlock{
     margin: auto 10rem;
@@ -53,7 +53,6 @@
     text-align: center;
     border-radius: 4px;
     font-size: 1.4rem;
-    margin-right: 2rem;
     border-style: none;
 }
 .register{
@@ -62,6 +61,7 @@
     border-radius: 4px;
     font-size: 1.4rem;
     border-style: none;
+    margin-right: 2rem;
 }
 .register:hover{
     color: #ffffff;
@@ -75,3 +75,86 @@
     margin-right: 2rem;
 
 }
+@media only screen and (max-width: 550px) {
+   .block{
+    flex-direction: column-reverse;
+   }
+   
+    .image{
+        
+        width: 21rem;
+        margin: auto 2.5rem;
+    }
+    .innerBlock{
+       
+        margin:7rem 2.5rem auto 2.5rem ;
+    }
+    .heading{
+        font-size: 1.5rem;
+        font-weight: bold;
+        width: 20rem;
+        margin: 0rem 0rem 0.5rem 0rem;
+    }
+    .heading2{
+        font-size: 0.7rem;
+        opacity: 0.7;
+       margin: 0rem 0rem 2.4rem 0rem;
+    }
+    .input{
+        padding:0.6rem;
+        width: 20rem;
+        color: white;
+        border-style: none;
+        height: 2rem;
+        border-radius: 5px;
+        background-color: #45474E;
+        font-size: 1.1rem;
+        margin: 0rem 0rem 1.4rem 0rem;
+    }
+   
+    
+
+  }
+  @media  only screen and (max-width:320px ) {
+    .image{
+        
+        width: 17rem;
+        margin: auto 2.5rem;
+    }
+    .innerBlock{
+       
+        margin:7rem 0.5rem auto 0.5rem ;
+    }
+    .heading{
+        font-size: 1.5rem;
+        font-weight: bold;
+        width: 20rem;
+        margin: 0rem 0rem 0.5rem 0rem;
+    }
+    .heading2{
+        font-size: 0.7rem;
+        opacity: 0.7;
+       margin: 0rem 0rem 2.4rem 0rem;
+    }
+    .input{
+        padding:0.6rem;
+        width: 20rem;
+        color: white;
+        border-style: none;
+        height: 2rem;
+        border-radius: 5px;
+        background-color: #45474E;
+        font-size: 1.1rem;
+        margin: 0rem 0rem 1.4rem 0rem;
+    }
+    .button{
+        margin: 1rem 0rem 0rem 0rem;
+        width: 23rem;
+        display: flex;
+        flex-direction: row;
+        
+        
+    }
+   
+    
+  }
