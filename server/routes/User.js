@@ -27,7 +27,7 @@ Router.post('/login' , async(req,res)=>{
         }
 
         //Creating token for a particular user
-        const token = jwt.sign( {_id: user._id}, process.env.TOKEN_SECRET)
+        const token = jwt.sign( {_id: user._id}, "sshhhkeepthissecret")
         res.cookie('jwt', token , {
             httpOnly : true,
             maxAge : 4*60*60*1000 // 4hr 
@@ -45,7 +45,7 @@ Router.get('/' , async(req,res) =>{
     if(cookie){
         
         const cookieValue = cookie.slice(4)
-        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        const claims = jwt.verify(cookieValue , "sshhhkeepthissecret")
         
         if(!claims){
             return res.status(401).send('Unauthorized')
@@ -75,7 +75,7 @@ Router.get('/profileData',async(req,res)=>{
     if(cookie){
 
         const cookieValue = cookie.slice(4)
-        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        const claims = jwt.verify(cookieValue , "sshhhkeepthissecret")
         
         if(!claims){
             return res.status(401).send('Unauthorized')
@@ -100,7 +100,7 @@ Router.get('/profile',async(req,res)=>{
 
         
         const cookieValue = cookie.slice(4)
-        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        const claims = jwt.verify(cookieValue , "sshhhkeepthissecret")
         
         
         if(!claims){
@@ -132,7 +132,7 @@ Router.post('/addProfile', async(req,res)=>{
     if(cookie){
 
         const cookieValue = cookie.slice(4)
-        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        const claims = jwt.verify(cookieValue , "sshhhkeepthissecret")
         
         if(!claims){
             return res.status(401).send({
@@ -185,7 +185,7 @@ Router.get('/bookmark', async(req,res)=>{
     if(cookie){
 
         const cookieValue = cookie.slice(4)
-        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        const claims = jwt.verify(cookieValue , "sshhhkeepthissecret")
         
         if(!claims){
             return res.status(401).send('Unauthorized')
@@ -212,7 +212,7 @@ Router.post('/bookmark/add', async(req,res)=>{
     if(cookie){
 
         const cookieValue = cookie.slice(4)
-        const claims = jwt.verify(cookieValue , process.env.TOKEN_SECRET)
+        const claims = jwt.verify(cookieValue , "sshhhkeepthissecret")
         
         if(!claims){
             return res.status(401).send({
