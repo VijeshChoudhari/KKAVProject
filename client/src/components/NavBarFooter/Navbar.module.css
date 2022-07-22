@@ -47,3 +47,6 @@
     background-color: rgb(0, 123, 255);
     transition: all 450ms;
 }
+@media only screen and (max-with:320px){
+    
+}
